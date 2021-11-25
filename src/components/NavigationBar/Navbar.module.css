@@ -1,0 +1,25 @@
+a {
+  text-decoration: none;
+  color: black !important;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+}
+a:hover {
+  color: cyan !important;
+  border-bottom: 5px cyan !important;
+}
+
+.nav-item {
+  transition: border-width 0.5s !important;
+}
+.nav-item:hover {
+  border-radius: 30px !important;
+  border-bottom: 8px solid white !important;
+}
+.nav-item:hover > a {
+  font-weight: 800;
+  color: white;
+}
+.logo {
+  width: 5em;
+}
