@@ -1,13 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  Button,
-  Form,
-  FormFeedback,
-  FormText,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
+import { Button, Form, FormText, FormGroup, Label, Input } from "reactstrap";
 import { AuthContext } from "../App";
 
 export const Signup = () => {
@@ -38,6 +30,7 @@ export const Signup = () => {
       }),
     })
       .then((res) => {
+        console.log(res);
         if (res.ok) {
           return res.json();
         }
@@ -45,6 +38,7 @@ export const Signup = () => {
       })
       .then((resJson) => {
         dispatch({ type: "SIGNUP", payload: resJson });
+        console.log(resJson);
       })
       .catch((err) => {
         setData({
