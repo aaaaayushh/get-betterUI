@@ -1,15 +1,19 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Alert } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { AuthContext } from "../App";
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
   const initState = {
     email: "",
     password: "",
     error: null,
   };
   const [data, setData] = useState(initState);
+  const [authError, setAuthError] = useState(false);
   const handleInputChange = (e) => {
     setData({
       ...data,
@@ -19,7 +23,6 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null });
-    console.log(data);
 
     fetch("http://localhost:3000/auth/login", {
       method: "post",
@@ -33,14 +36,19 @@ export const Login = () => {
     })
       .then((res) => {
         if (res.ok) {
-          console.log(res.json);
           return res.json();
         }
         throw res;
       })
       .then((resJson) => {
         console.log(resJson);
-        dispatch({ type: "LOGIN", payload: resJson });
+        if (!resJson.user) {
+          setAuthError(true);
+          return;
+        } else {
+          dispatch({ type: "LOGIN", payload: resJson });
+          navigate("/");
+        }
       })
       .catch((err) => {
         setData({
@@ -57,6 +65,9 @@ export const Login = () => {
           <Form onSubmit={handleSubmit}>
             <h1 className="text-center m-5">Login</h1>
             <FormGroup>
+              {authError && (
+                <Alert color="danger">Incorrect username or password!</Alert>
+              )}
               <Label for="email">Email</Label>
               <Input
                 type="email"

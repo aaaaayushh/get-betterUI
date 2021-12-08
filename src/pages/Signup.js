@@ -1,5 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Button, Form, FormText, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  Alert,
+  Form,
+  FormText,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 
 export const Signup = () => {
@@ -7,6 +16,8 @@ export const Signup = () => {
   const initState = { firstname: "", lastname: "", email: "", password: "" };
   const [confirmPass, setconfirmPass] = useState("");
   const [data, setData] = useState(initState);
+  const [authError, setAuthError] = useState(false);
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -37,8 +48,13 @@ export const Signup = () => {
         throw res;
       })
       .then((resJson) => {
-        dispatch({ type: "SIGNUP", payload: resJson });
-        console.log(resJson);
+        if (resJson.errors) {
+          setAuthError(true);
+        } else {
+          dispatch({ type: "SIGNUP", payload: resJson });
+          navigate("/");
+          console.log(resJson);
+        }
       })
       .catch((err) => {
         setData({
@@ -53,6 +69,9 @@ export const Signup = () => {
         <Form onSubmit={handleSubmit}>
           <h1 className="text-center">Signup</h1>
           <FormGroup>
+            {authError && (
+              <Alert color="danger">Email Id is already registered!</Alert>
+            )}
             <Label for="firstname">First Name</Label>
             <Input
               type="text"
@@ -118,7 +137,6 @@ export const Signup = () => {
                   required
                   invalid
                 />
-                {/* <FormFeedback tooltip>Password does not match!</FormFeedback> */}
                 <FormText>Password does not match</FormText>
               </>
             )}

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { NavigationBar } from "./components/NavigationBar/Navbar";
 import { Signup } from "./pages/Signup";
+import GetBetter from "./pages/GetBetter";
+import PrivateRoute from "./components/PrivateRoute";
+import Landing from "./pages/Landing";
 export const AuthContext = React.createContext();
 const initState = {
   isAuth: false,
@@ -46,12 +49,21 @@ function App() {
   const [state, dispatch] = React.useReducer(reducer, initState);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      <NavigationBar />
       <div className="App">
         <BrowserRouter>
+          <NavigationBar />
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/get-better"
+              element={
+                <PrivateRoute>
+                  <GetBetter />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/" element={<Landing />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -10,6 +10,7 @@ import {
   Button,
 } from "reactstrap";
 import { AuthContext } from "../../App";
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 export const NavigationBar = () => {
   const { dispatch } = useContext(AuthContext);
@@ -45,44 +46,51 @@ export const NavigationBar = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="col-12 justify-content-end" navbar>
             <NavItem>
-              <NavLink href="/">
+              <Link to="/">
                 <Button outline className="rounded-pill">
                   Home
                 </Button>
-              </NavLink>
+              </Link>
             </NavItem>
             {authState.isAuth ? (
               <>
                 <NavItem>
-                  <NavLink href="/profile">
+                  <Link to="/profile">
                     <Button outline className="rounded-pill">
                       Your Profile
                     </Button>
-                  </NavLink>
+                  </Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/">
+                  <Link to="/get-better">
+                    <Button outline className="rounded-pill">
+                      Get Better
+                    </Button>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link to="/">
                     <Button outline className="rounded-pill" onClick={logout}>
                       Logout
                     </Button>
-                  </NavLink>
+                  </Link>
                 </NavItem>
               </>
             ) : (
               <>
                 <NavItem>
-                  <NavLink href="/login">
+                  <Link to="/login">
                     <Button outline className="rounded-pill">
                       Login
                     </Button>
-                  </NavLink>
+                  </Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/signup">
+                  <Link to="/signup">
                     <Button outline className="rounded-pill">
                       Signup
                     </Button>
-                  </NavLink>
+                  </Link>
                 </NavItem>
               </>
             )}
