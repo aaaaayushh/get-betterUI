@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { FormContext } from "../../pages/GetBetter";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { FormContext } from "../../pages/getBetter/GetBetter";
 
 export default function PageTwo({ nextStep, prevStep }) {
   const { state, dispatch } = useContext(FormContext);

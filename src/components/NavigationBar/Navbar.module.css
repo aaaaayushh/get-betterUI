@@ -1,14 +1,3 @@
-a {
-  text-decoration: none;
-  color: black !important;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-}
-a:hover {
-  color: cyan !important;
-  border-bottom: 5px cyan !important;
-}
-
 .nav-item {
   transition: border-width 0.5s !important;
 }

@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { FormContext } from "../../pages/GetBetter";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { FormContext } from "../../pages/getBetter/GetBetter";
 
 export default function PageThree({ nextStep, prevStep }) {
   const { state, dispatch } = useContext(FormContext);
   const handleChange = (e) => {
-    // console.log(state);
     dispatch({
       type: "CHANGE",
       payload: { name: e.target.name, value: e.target.value },

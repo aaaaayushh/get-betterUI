@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Login } from "./pages/Login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Login } from "./pages/Login/Login";
 import { NavigationBar } from "./components/NavigationBar/Navbar";
-import { Signup } from "./pages/Signup";
-import GetBetter from "./pages/GetBetter";
+import { Signup } from "./pages/Signup/Signup";
+import GetBetter from "./pages/getBetter/GetBetter";
 import PrivateRoute from "./components/PrivateRoute";
-import Landing from "./pages/Landing";
+import Landing from "./pages/Landing/Landing";
 export const AuthContext = React.createContext();
 const initState = {
   isAuth: false,

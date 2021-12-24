@@ -6,7 +6,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   Button,
 } from "reactstrap";
 import { AuthContext } from "../../App";
@@ -15,20 +14,23 @@ import styles from "./Navbar.module.css";
 export const NavigationBar = () => {
   const { dispatch } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { state: authState } = useContext(AuthContext);
   function toggle() {
     setIsOpen(!isOpen);
   }
   const logout = () => {
-    fetch("http://localhost:3000/auth/logout", { method: "get" })
+    setLoading(true);
+    fetch("http://localhost:3001/auth/logout", { method: "get" })
       .then((res) => {
         if (res.ok) {
-          console.log(res.json);
+          // console.log(res.json);
           return res.json();
         }
         throw res;
       })
       .then(() => {
+        setLoading(false);
         dispatch({ type: "LOGOUT" });
       });
   };
@@ -45,49 +47,71 @@ export const NavigationBar = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="col-12 justify-content-end" navbar>
-            <NavItem>
-              <Link to="/">
-                <Button outline className="rounded-pill">
-                  Home
-                </Button>
-              </Link>
-            </NavItem>
             {authState.isAuth ? (
               <>
-                <NavItem>
+                <NavItem className="mx-3">
+                  <Link to="/">
+                    <Button outline className="rounded-pill btn-lg">
+                      Home
+                    </Button>
+                  </Link>
+                </NavItem>
+                <NavItem className="mx-3">
                   <Link to="/profile">
-                    <Button outline className="rounded-pill">
+                    <Button outline className="rounded-pill btn-lg">
                       Your Profile
                     </Button>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem className="mx-3">
                   <Link to="/get-better">
-                    <Button outline className="rounded-pill">
+                    <Button outline className="rounded-pill btn-lg">
                       Get Better
                     </Button>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem className="mx-3">
                   <Link to="/">
-                    <Button outline className="rounded-pill" onClick={logout}>
-                      Logout
-                    </Button>
+                    {loading ? (
+                      <Button
+                        color="primary"
+                        className="rounded-pill btn btn-lg"
+                      >
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="sr-only">Logging out...</span>
+                      </Button>
+                    ) : (
+                      <Button
+                        outline
+                        className="rounded-pill btn-lg"
+                        onClick={logout}
+                      >
+                        Logout
+                      </Button>
+                    )}
                   </Link>
                 </NavItem>
               </>
             ) : (
               <>
-                <NavItem>
+                <NavItem className="mx-3">
                   <Link to="/login">
-                    <Button outline className="rounded-pill">
+                    <Button
+                      outline
+                      className="rounded-pill btn-lg"
+                      color="primary"
+                    >
                       Login
                     </Button>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem className="mx-3">
                   <Link to="/signup">
-                    <Button outline className="rounded-pill">
+                    <Button className="rounded-pill btn-lg" color="primary">
                       Signup
                     </Button>
                   </Link>
