@@ -7,6 +7,7 @@ import { Signup } from "./pages/Signup/Signup";
 import GetBetter from "./pages/getBetter/GetBetter";
 import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./pages/Landing/Landing";
+import Home from "./pages/Home/Home";
 export const AuthContext = React.createContext();
 const initState = {
   isAuth: false,
@@ -60,6 +61,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <GetBetter />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <Home />
                 </PrivateRoute>
               }
             />

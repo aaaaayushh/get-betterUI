@@ -1,0 +1,7 @@
+::placeholder {
+  color: whitesmoke !important;
+}
+
+.modalInput:focus {
+  border: none !important;
+}

@@ -1,9 +1,12 @@
 import React from "react";
+import CreatePost from "../../components/createPost/CreatePost";
 
 export default function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <div className="container">
+        <CreatePost />
+      </div>
     </>
   );
 }

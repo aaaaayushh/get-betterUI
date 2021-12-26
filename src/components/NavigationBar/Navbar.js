@@ -50,7 +50,7 @@ export const NavigationBar = () => {
             {authState.isAuth ? (
               <>
                 <NavItem className="mx-3">
-                  <Link to="/">
+                  <Link to="/home">
                     <Button outline className="rounded-pill btn-lg">
                       Home
                     </Button>
