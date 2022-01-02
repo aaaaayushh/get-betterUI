@@ -11,11 +11,11 @@ import {
 import { AuthContext } from "../../App";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useEffect } from "react";
 export const NavigationBar = () => {
-  const { dispatch } = useContext(AuthContext);
+  const { state: authState, dispatch } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { state: authState } = useContext(AuthContext);
   function toggle() {
     setIsOpen(!isOpen);
   }
@@ -34,6 +34,9 @@ export const NavigationBar = () => {
         dispatch({ type: "LOGOUT" });
       });
   };
+  useEffect(() => {
+    console.log(authState);
+  }, [authState]);
   return (
     <div className="col-12">
       <Navbar expand="md">

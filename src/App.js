@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/Login/Login";
@@ -9,11 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 export const AuthContext = React.createContext();
-const initState = {
-  isAuth: false,
-  user: null,
-  token: null,
-};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "SIGNUP":
@@ -46,7 +42,13 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 function App() {
+  const [initState, setInitState] = useState({
+    isAuth: localStorage.getItem("user") ? true : false,
+    user: localStorage.getItem("user") ? localStorage.getItem("user") : null,
+    token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
+  });
   const [state, dispatch] = React.useReducer(reducer, initState);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
