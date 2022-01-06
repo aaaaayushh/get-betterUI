@@ -1,16 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { BiComment } from "react-icons/bi";
 import { AuthContext } from "../../App";
 import axios from "axios";
-export default function Post({ user, likes, caption, image, comments, _id }) {
+import { Button, Input, InputGroup } from "reactstrap";
+export default function Post({ user, likes, caption, image, _id }) {
   const [numLikes, setNumLikes] = useState(0);
   const [liked, setLiked] = useState(false);
+  const [comment, setComment] = useState();
+  const [showComment, setShowComment] = useState(false);
+  const [comments, setComments] = useState([]);
   const { state } = useContext(AuthContext);
+  const fetchComments = useCallback(async () => {
+    try {
+      const res = await axios.get(`http://localhost:3001/post/${_id}/comments`);
+      // console.log(res);
+      setComments(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [_id]);
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
   useEffect(() => {
     setNumLikes(likes.length);
-    console.log(likes);
     //find if current user has liked this post
     if (likes.find(({ _id }) => _id === JSON.parse(state.user)._id)) {
       setLiked(true);
@@ -41,6 +56,22 @@ export default function Post({ user, likes, caption, image, comments, _id }) {
     }
   };
 
+  const addComment = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3001/post/${_id}/comment`,
+        {
+          user: JSON.parse(state.user)._id,
+          comment,
+          post: _id,
+        }
+      );
+      console.log(res);
+      fetchComments();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <div className="card col-12">
@@ -77,16 +108,32 @@ export default function Post({ user, likes, caption, image, comments, _id }) {
           )}
           <BiComment
             className="me-2"
+            onClick={() => setShowComment(!showComment)}
             style={{ cursor: "pointer", transform: "scale(1.5)" }}
           />
         </div>
+        {showComment && (
+          <div className="m-3 mt-0">
+            <InputGroup>
+              <Input
+                className="border-3"
+                value={comment}
+                required={true}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <Button color="light" onClick={addComment}>
+                Comment
+              </Button>
+            </InputGroup>
+          </div>
+        )}
 
         {/* comments */}
-
-        <div className="mx-3">
+        {console.log(comments)}
+        <div className="me-3 ms-2">
           {comments.map((comment) => (
-            <div className="fs-65">
-              <strong>
+            <div className="fs-6">
+              <strong className="me-3">
                 {comment.user.firstname} {comment.user.lastname}
               </strong>
               {comment.comment}
