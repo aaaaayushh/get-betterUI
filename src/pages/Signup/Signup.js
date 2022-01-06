@@ -39,8 +39,8 @@ export const Signup = () => {
         lastname: res.profileObj.familyName,
       }),
     }).then((res) => {
-      console.log(res);
-      console.log("here");
+      // console.log(res);
+      // console.log("here");
     });
     dispatch({
       type: "SIGNUP",
@@ -63,19 +63,16 @@ export const Signup = () => {
       body: JSON.stringify({
         username: data.email,
         password: data.password,
-        firstname: data.firstname,
-        lastname: data.lastname,
-        location: data.location,
       }),
     })
       .then((res) => {
-        console.log(res);
         if (res.ok) {
           return res.json();
         }
         throw res;
       })
       .then((resJson) => {
+        // console.log(resJson);
         if (resJson.errors) {
           setAuthError(true);
           setLoading(false);
@@ -90,11 +87,16 @@ export const Signup = () => {
               firstname: data.firstname,
               lastname: data.lastname,
             }),
-          });
-          dispatch({ type: "SIGNUP", payload: resJson });
+          })
+            .then((res) => {
+              // console.log(res);
+              return res.json();
+            })
+            .then((resJson) => {
+              dispatch({ type: "SIGNUP", payload: resJson });
+            });
           setLoading(false);
           navigate("/");
-          console.log(resJson);
         }
       })
       .catch((err) => {

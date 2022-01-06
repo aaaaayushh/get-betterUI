@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { GoogleLogin } from "react-google-login";
 import { AuthContext } from "../../App";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -35,11 +36,23 @@ export const Login = () => {
         firstname: res.profileObj.givenName,
         lastname: res.profileObj.familyName,
       }),
-    });
-    dispatch({
-      type: "LOGIN",
-      payload: { user: res.profileObj, token: res.tokenId },
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then((resJson) => {
+        console.log(resJson);
+        const user = { ...res.profileObj, _id: resJson._id };
+        console.log(user);
+        dispatch({
+          type: "LOGIN",
+          payload: { user, token: res.tokenId },
+        });
+      });
+
     navigate("/");
   };
   const onFailure = (err) => {
@@ -67,7 +80,7 @@ export const Login = () => {
         throw res;
       })
       .then((resJson) => {
-        console.log(resJson);
+        // console.log(resJson);
         if (!resJson.user) {
           setAuthError(true);
           setLoading(false);

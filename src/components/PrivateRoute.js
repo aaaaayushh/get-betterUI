@@ -4,9 +4,9 @@ import { AuthContext } from "../App";
 
 const PrivateRoute = ({ children }) => {
   const { state } = useContext(AuthContext);
-  useEffect(() => {
-    console.log(state);
-  });
+  // useEffect(() => {
+  // console.log(state);
+  // });
   return state.isAuth ? children : <Navigate to="/login" />;
 };
 

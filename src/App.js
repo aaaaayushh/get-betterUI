@@ -8,6 +8,7 @@ import GetBetter from "./pages/getBetter/GetBetter";
 import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
+import Profile from "./pages/profile/Profile";
 export const AuthContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -18,7 +19,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuth: true,
-        user: action.payload.user,
+        user: JSON.stringify(action.payload.user),
         token: action.payload.token,
       };
     case "LOGIN":
@@ -28,7 +29,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuth: true,
-        user: action.payload.user,
+        user: JSON.stringify(action.payload.user),
         token: action.payload.token,
       };
     case "LOGOUT":
@@ -44,11 +45,11 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [initState, setInitState] = useState({
+  const initState = {
     isAuth: localStorage.getItem("user") ? true : false,
     user: localStorage.getItem("user") ? localStorage.getItem("user") : null,
     token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
-  });
+  };
   const [state, dispatch] = React.useReducer(reducer, initState);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
@@ -56,8 +57,10 @@ function App() {
         <BrowserRouter>
           <NavigationBar />
           <Routes>
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile/:userId" element={<Profile />} />
             <Route
               path="/get-better"
               element={
@@ -74,7 +77,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/" element={<Landing />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -5,9 +5,7 @@ export default function Landing() {
   return (
     <>
       <h1>landing</h1>
-      <div className="col-6 mx-auto">
-        <Post />
-      </div>
+      <div className="col-6 mx-auto"></div>
     </>
   );
 }

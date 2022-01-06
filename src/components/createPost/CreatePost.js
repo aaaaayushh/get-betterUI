@@ -23,6 +23,10 @@ export default function CreatePost() {
   const hiddenFileInput = React.useRef(null);
   const { state } = useContext(AuthContext);
 
+  // useEffect(() => {
+  //   console.log(JSON.parse(state.user));
+  // }, [state.user]);
+
   useEffect(() => {
     if (!fileUpload) {
       setFilePreview(undefined);
@@ -59,26 +63,30 @@ export default function CreatePost() {
 
   const uploadPost = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    var picUrl;
-    formData.append("file", fileUpload);
-    try {
-      const res = await axios.post(
-        "http://localhost:3001/post/uploadImage",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(res);
-      picUrl = res.data.data;
-    } catch (err) {
-      console.log(err);
+    // console.log(state);
+
+    var picUrl = "";
+    if (fileUpload) {
+      const formData = new FormData();
+      formData.append("file", fileUpload);
+      try {
+        const res = await axios.post(
+          "http://localhost:3001/post/uploadImage",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(res);
+        picUrl = res.data.data;
+      } catch (err) {
+        console.log(err);
+      }
     }
     try {
-      const post = { caption, user: state.user, image: picUrl };
+      const post = { caption, image: picUrl, user: JSON.parse(state.user) };
       console.log(post);
       const res = await axios.post("http://localhost:3001/post", post);
       console.log(res);
@@ -104,46 +112,29 @@ export default function CreatePost() {
             className="img-fluid rounded-circle"
           />
         </div>
+
         <div
           className="flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white"
           onClick={toggleModal}
           style={{ cursor: "pointer" }}
         >
-          What's up with you, {state.user.givenName}? Feel free to share your
-          successes and your setbacks!
+          What's up with you, {JSON.parse(state.user).givenName}? Feel free to
+          share your successes and your setbacks!
         </div>
       </div>
       <Modal isOpen={modalOpen} size="lg" centered toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Create a Post</ModalHeader>
         <ModalBody className="bg-secondary">
-          <div className="bg-secondary">
+          <div>
             <Form>
               <Input
                 type="text"
                 required
-                className={` bg-secondary rounded-pill border-2 ${styles.modalInput}`}
+                className={` bg-secondary rounded-pill border-2 text-light fw-bold ${styles.modalInput}`}
                 placeholder="What's on your mind?"
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
               />
-              {/* <div className="filepond-wrapper">
-                <FilePond
-                  files={fileUpload}
-                  server={null}
-                  instantUpload={false}
-                  allowMultiple={false}
-                  onupdatefiles={setFileUpload}
-                />
-                <Button
-                  type="submit"
-                  className="col-3 mt-3"
-                  color="success rounded-pill"
-                  disabled={caption === "" ? true : false}
-                  onClick={(e) => uploadPost(e)}
-                >
-                  Create Post
-                </Button>
-              </div> */}
               {fileUpload ? (
                 <div className="m-4">
                   <img src={filePreview} alt="preview" className="img-fluid" />
@@ -156,15 +147,6 @@ export default function CreatePost() {
                       }}
                     >
                       Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="col-3 mt-3"
-                      color="success rounded-pill"
-                      disabled={caption === "" ? true : false}
-                      onClick={(e) => uploadPost(e)}
-                    >
-                      Create Post
                     </Button>
                   </div>
                 </div>
@@ -187,6 +169,17 @@ export default function CreatePost() {
                   </div>
                 </div>
               )}
+              <div className="col-12 d-flex justify-content-end">
+                <Button
+                  type="submit"
+                  className="col-3 mt-3"
+                  color="success rounded-pill "
+                  disabled={caption === "" ? true : false}
+                  onClick={(e) => uploadPost(e)}
+                >
+                  Create Post
+                </Button>
+              </div>
               {fileError && (
                 <Alert color="warning">
                   Please choose a valid image format!

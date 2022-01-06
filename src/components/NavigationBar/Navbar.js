@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -11,11 +11,15 @@ import {
 import { AuthContext } from "../../App";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { useEffect } from "react";
 export const NavigationBar = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    console.log(authState.user);
+    console.log(JSON.parse(authState.user));
+  }, []);
   function toggle() {
     setIsOpen(!isOpen);
   }
@@ -34,9 +38,6 @@ export const NavigationBar = () => {
         dispatch({ type: "LOGOUT" });
       });
   };
-  useEffect(() => {
-    console.log(authState);
-  }, [authState]);
   return (
     <div className="col-12">
       <Navbar expand="md">
@@ -54,21 +55,33 @@ export const NavigationBar = () => {
               <>
                 <NavItem className="mx-3">
                   <Link to="/home">
-                    <Button outline className="rounded-pill btn-lg">
+                    <Button
+                      outline
+                      color="dark"
+                      className="rounded-pill btn-lg"
+                    >
                       Home
                     </Button>
                   </Link>
                 </NavItem>
                 <NavItem className="mx-3">
-                  <Link to="/profile">
-                    <Button outline className="rounded-pill btn-lg">
+                  <Link to={`/profile/${JSON.parse(authState.user)._id}`}>
+                    <Button
+                      outline
+                      color="dark"
+                      className="rounded-pill btn-lg"
+                    >
                       Your Profile
                     </Button>
                   </Link>
                 </NavItem>
                 <NavItem className="mx-3">
                   <Link to="/get-better">
-                    <Button outline className="rounded-pill btn-lg">
+                    <Button
+                      outline
+                      color="dark"
+                      className="rounded-pill btn-lg"
+                    >
                       Get Better
                     </Button>
                   </Link>
@@ -90,6 +103,7 @@ export const NavigationBar = () => {
                     ) : (
                       <Button
                         outline
+                        color="dark"
                         className="rounded-pill btn-lg"
                         onClick={logout}
                       >
