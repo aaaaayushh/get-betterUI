@@ -20,6 +20,7 @@ export default function CreatePost() {
   const [fileUpload, setFileUpload] = useState(null);
   const [filePreview, setFilePreview] = useState();
   const [fileError, setFileError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const hiddenFileInput = React.useRef(null);
   const { state } = useContext(AuthContext);
 
@@ -63,6 +64,7 @@ export default function CreatePost() {
 
   const uploadPost = async (e) => {
     e.preventDefault();
+    setLoading(true);
     // console.log(state);
 
     var picUrl = "";
@@ -90,6 +92,8 @@ export default function CreatePost() {
       console.log(post);
       const res = await axios.post("http://localhost:3001/post", post);
       console.log(res);
+      setLoading(false);
+      setModalOpen(false);
     } catch (err) {
       console.log(err);
     }
@@ -106,20 +110,31 @@ export default function CreatePost() {
     <>
       <div className="card col-12 rounded-pill d-flex flex-row p-3">
         <div className="col-1 me-3 my-auto">
-          <img
-            src="https://images.indianexpress.com/2021/01/myntra.png"
-            alt="profile pic"
-            className="img-fluid rounded-circle"
-          />
+          {JSON.parse(state.user).imageUrl ? (
+            <img
+              src={JSON.parse(state.user).imageUrl}
+              alt="profile pic"
+              className="img-fluid rounded-circle col-10"
+            />
+          ) : (
+            <img
+              src="/anonymous-user.jpg"
+              alt=""
+              className="img-fluid col-10 rounded-circle"
+            />
+          )}
         </div>
 
         <div
-          className="flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white"
+          className={`flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white ${styles.postBox}`}
           onClick={toggleModal}
           style={{ cursor: "pointer" }}
         >
-          What's up with you, {JSON.parse(state.user).givenName}? Feel free to
-          share your successes and your setbacks!
+          What's up with you,{" "}
+          {JSON.parse(state.user).googleId
+            ? JSON.parse(state.user).givenName
+            : JSON.parse(state.user).firstname}
+          ? Feel free to share your successes and your setbacks!
         </div>
       </div>
       <Modal isOpen={modalOpen} size="lg" centered toggle={toggleModal}>
@@ -177,7 +192,17 @@ export default function CreatePost() {
                   disabled={caption === "" ? true : false}
                   onClick={(e) => uploadPost(e)}
                 >
-                  Create Post
+                  {loading ? (
+                    <>
+                      <span>Creating post...</span>
+                      <span
+                        className="spinner-border spinner-border-sm ms-3"
+                        aria-hidden="true"
+                      />
+                    </>
+                  ) : (
+                    <span>Create Post</span>
+                  )}
                 </Button>
               </div>
               {fileError && (

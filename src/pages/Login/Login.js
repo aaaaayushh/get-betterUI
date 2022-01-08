@@ -5,7 +5,6 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { GoogleLogin } from "react-google-login";
 import { AuthContext } from "../../App";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -35,6 +34,8 @@ export const Login = () => {
         username: res.profileObj.email,
         firstname: res.profileObj.givenName,
         lastname: res.profileObj.familyName,
+        googleId: res.profileObj.googleId,
+        profilePic: res.profileObj.imageUrl,
       }),
     })
       .then((res) => {

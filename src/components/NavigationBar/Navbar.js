@@ -16,10 +16,10 @@ export const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(authState.user);
-    console.log(JSON.parse(authState.user));
-  }, []);
+  // useEffect(() => {
+  //   console.log(authState.user);
+  //   console.log(JSON.parse(authState.user));
+  // }, []);
   function toggle() {
     setIsOpen(!isOpen);
   }

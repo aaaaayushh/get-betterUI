@@ -11,6 +11,7 @@ export default function Post({ user, likes, caption, image, _id }) {
   const [comment, setComment] = useState();
   const [showComment, setShowComment] = useState(false);
   const [comments, setComments] = useState([]);
+  const [showAllComments, setshowAllComments] = useState(false);
   const { state } = useContext(AuthContext);
   const fetchComments = useCallback(async () => {
     try {
@@ -68,6 +69,7 @@ export default function Post({ user, likes, caption, image, _id }) {
       );
       console.log(res);
       fetchComments();
+      setComment("");
     } catch (err) {
       console.log(err);
     }
@@ -76,18 +78,18 @@ export default function Post({ user, likes, caption, image, _id }) {
     <>
       <div className="card col-12">
         <div className="d-flex my-auto">
-          <div className="rounded-circle mt-1">
+          <div className="rounded-circle text-center mt-3">
             <img
-              src="https://images.indianexpress.com/2021/01/myntra.png"
+              src={user.profilePic ? user.profilePic : "/anonymous-user.jpg"}
               alt=""
-              className="img-fluid"
-              style={{ width: "5em" }}
+              className="img-fluid rounded-circle col-6"
             />
           </div>
-          <div className="fs-5 mt-2">
+          <div className="fs-5 mt-4">
             {user.firstname} {user.lastname}
           </div>
         </div>
+        <hr />
         {/* post caption */}
         <div className="mx-3 fs-5 mt-1 fw-bold">{caption}</div>
         {image && <img src={image} alt="" className="img-fluid col-12 my-3" />}
@@ -129,17 +131,52 @@ export default function Post({ user, likes, caption, image, _id }) {
         )}
 
         {/* comments */}
-        {console.log(comments)}
-        <div className="me-3 ms-2">
-          {comments.map((comment) => (
-            <div className="fs-6">
-              <strong className="me-3">
-                {comment.user.firstname} {comment.user.lastname}
-              </strong>
-              {comment.comment}
+        {showAllComments ? (
+          <>
+            <div className="me-3 ms-2">
+              {comments
+                .slice(0)
+                .reverse()
+                .map((comment) => (
+                  <div className="fs-6">
+                    <strong className="me-3">
+                      {comment.user.firstname} {comment.user.lastname}
+                    </strong>
+                    {comment.comment}
+                  </div>
+                ))}
             </div>
-          ))}
-        </div>
+            <span
+              onClick={() => setshowAllComments(false)}
+              className="fs-6 text-muted"
+              style={{ cursor: "pointer" }}
+            >
+              Show less comments
+            </span>
+          </>
+        ) : (
+          <div className="me-3 ms-2">
+            {comments
+              .slice(comments.length - 3, comments.length)
+              .map((comment) => (
+                <>
+                  <div className="fs-6">
+                    <strong className="me-3">
+                      {comment.user.firstname} {comment.user.lastname}
+                    </strong>
+                    {comment.comment}
+                  </div>
+                </>
+              ))}
+            <span
+              className="text-muted fs-6"
+              style={{ cursor: "pointer" }}
+              onClick={() => setshowAllComments(true)}
+            >
+              Show all comments
+            </span>
+          </div>
+        )}
       </div>
     </>
   );

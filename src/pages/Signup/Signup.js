@@ -37,6 +37,8 @@ export const Signup = () => {
         username: res.profileObj.email,
         firstname: res.profileObj.givenName,
         lastname: res.profileObj.familyName,
+        googleId: res.profileObj.googleId,
+        profilePic: res.profileObj.imageUrl,
       }),
     }).then((res) => {
       // console.log(res);
