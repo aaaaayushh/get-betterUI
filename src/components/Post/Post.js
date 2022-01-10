@@ -78,12 +78,20 @@ export default function Post({ user, likes, caption, image, _id }) {
     <>
       <div className="card col-12">
         <div className="d-flex my-auto">
-          <div className="rounded-circle text-center mt-3">
-            <img
-              src={user.profilePic ? user.profilePic : "/anonymous-user.jpg"}
-              alt=""
-              className="img-fluid rounded-circle col-6"
-            />
+          <div className="rounded-circle text-center mt-3 col-1">
+            {user.profilePic ? (
+              <img
+                src={user.profilePic}
+                alt=""
+                className="img-fluid rounded-circle col-8"
+              />
+            ) : (
+              <img
+                src="/anonymous-user.jpg"
+                alt=""
+                className="img-fluid rounded-circle col-8"
+              />
+            )}
           </div>
           <div className="fs-5 mt-4">
             {user.firstname} {user.lastname}
