@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../App";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
@@ -21,7 +20,9 @@ export default function Profile() {
       setUser(res.data.user);
     };
     const fetchUserPosts = async () => {
-      const res = await axios.get(`http://localhost:3001/post/${id.userId}`);
+      const res = await axios.get(
+        `http://localhost:3001/post/user/${id.userId}`
+      );
       console.log(res);
       setPosts(res.data);
     };

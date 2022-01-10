@@ -1,21 +1,38 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "../../App";
 import CreatePost from "../../components/createPost/CreatePost";
 import FindFriends from "../../components/findFriends/FindFriends";
 import Loader from "../../components/Loader/Loader";
 import Post from "../../components/Post/Post";
+import { AuthContext } from "../../App";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const { state } = useContext(AuthContext);
+  const { state } = useContext(AuthContext);
   useEffect(() => {
     setLoading(true);
+    console.log(state);
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/post");
+        const res = await axios.get(
+          `http://localhost:3001/post/${JSON.parse(state.user)._id}`
+        );
         console.log(res);
+        // res.data.sort((a, b) =>
+        //   getTime(a.createdAt) > getTime(b.createdAt) ? 1 : a.createdAt < b.createdAt ? -1 : 0
+        // );
+        res.data.map((d) => {
+          console.log(new Date(d.createdAt).getTime());
+        });
+        res.data.sort((a, b) => {
+          const d1 = new Date(a.createdAt);
+          const d2 = new Date(b.createdAt);
+          if (d1.getTime() > d2.getTime()) return -1;
+          else if (d1.getTime() < d2.getTime()) return 1;
+          else return 0;
+        });
         setPosts(res.data);
       } catch (err) {
         console.log(err);
@@ -23,7 +40,7 @@ export default function Home() {
     };
     fetchPosts();
     setLoading(false);
-  }, []);
+  }, [state]);
   if (loading) {
     return <Loader />;
   }

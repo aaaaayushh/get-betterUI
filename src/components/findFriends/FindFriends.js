@@ -1,20 +1,23 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { FcSearch } from "react-icons/fc";
 import { Button, Input, InputGroup } from "reactstrap";
-
 import { AuthContext } from "../../App";
+
 import PersonContainer from "./PersonContainer";
 
 export default function FindFriends() {
   const [searchVal, setsearchVal] = useState("");
   const [searchRes, setSearchRes] = useState();
+  const { state } = useContext(AuthContext);
 
   const searchUser = async (name) => {
     if (name !== "") {
       try {
         const res = await axios.get(
-          `http://localhost:3001/user/search/${name}`
+          `http://localhost:3001/user/search/${
+            JSON.parse(state.user)._id
+          }/${name}`
         );
         console.log(res);
         setSearchRes(res.data.users);
