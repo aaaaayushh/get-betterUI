@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "../../App";
-import CreatePost from "../../components/createPost/CreatePost";
+import CreatePost from "../../components/createPost/CreatePost.jsx";
 import FindFriends from "../../components/findFriends/FindFriends";
 import Loader from "../../components/Loader/Loader";
 import Post from "../../components/Post/Post";

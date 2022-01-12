@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
 import Post from "../../components/Post/Post";
+import UserInfo from "../../components/userInfo";
 
 export default function Profile() {
   const [user, setUser] = useState();
@@ -10,7 +11,6 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const id = useParams("userId");
   // console.log(id);
-
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
@@ -30,7 +30,8 @@ export default function Profile() {
     fetchUser();
     fetchUserPosts();
     setLoading(false);
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (loading) {
     return <h1>loading</h1>;
   }
@@ -39,30 +40,7 @@ export default function Profile() {
   }
   return (
     <>
-      <div className="card col-8 mx-auto shadow-lg d-flex flex-row">
-        <div className="col-1 m-3">
-          {user.profilePic ? (
-            <img
-              src={user.profilePic}
-              className="img-fluid rounded-circle col-12"
-              alt=""
-            />
-          ) : (
-            <img
-              src="/anonymous-user.jpg"
-              className="rounded-circle img-fluid col-12"
-              alt=""
-            />
-          )}
-        </div>
-        <div className="col-8 my-auto ms-3">
-          <span className="fs-3 fw-bold">
-            {user.firstname} {user.lastname}
-          </span>
-          <br />
-          <small className="fw-bolder ms-1">{user.username}</small>
-        </div>
-      </div>
+      <UserInfo user={user} />
       {loading ? (
         <Loader />
       ) : (

@@ -1,0 +1,26 @@
+.picContainer {
+  position: relative;
+}
+.picContainer:hover .profilePic {
+  opacity: 0.3;
+  cursor: pointer;
+}
+.picContainer:hover .uploadIcon {
+  opacity: 1;
+}
+.profilePic {
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+.uploadIcon {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
