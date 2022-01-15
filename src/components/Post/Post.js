@@ -5,13 +5,14 @@ import { BiComment } from "react-icons/bi";
 import { AuthContext } from "../../App";
 import axios from "axios";
 import { Button, Input, InputGroup } from "reactstrap";
-export default function Post({ user, likes, caption, image, _id }) {
+export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const [numLikes, setNumLikes] = useState(0);
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState();
   const [showComment, setShowComment] = useState(false);
   const [comments, setComments] = useState([]);
   const [showAllComments, setshowAllComments] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
   const { state } = useContext(AuthContext);
   const fetchComments = useCallback(async () => {
     try {
@@ -22,9 +23,35 @@ export default function Post({ user, likes, caption, image, _id }) {
       console.log(err);
     }
   }, [_id]);
+  function getElapsedTime(inputTimestamp) {
+    const d = new Date(inputTimestamp);
+    // console.log(d);
+    const currDate = new Date();
+    var temp = (currDate.getTime() - d.getTime()) / 1000;
+    // console.log(temp);
+    if (temp > 60) {
+      temp = temp / 60;
+      if (temp > 60) {
+        temp = temp / 60;
+        if (temp > 24) {
+          temp = temp / 24;
+          return { temp, unit: "days" };
+        } else {
+          return { temp, unit: "hours" };
+        }
+      } else {
+        return { temp, unit: "minutes" };
+      }
+    } else {
+      return { temp, unit: "seconds" };
+    }
+  }
   useEffect(() => {
     fetchComments();
-  }, [fetchComments]);
+    // console.log(getElapsedTime(timestamp));
+    setTimeElapsed(getElapsedTime(timestamp));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     setNumLikes(likes.length);
     //find if current user has liked this post
@@ -101,26 +128,33 @@ export default function Post({ user, likes, caption, image, _id }) {
         {/* post caption */}
         <div className="mx-3 fs-5 mt-1 fw-bold">{caption}</div>
         {image && <img src={image} alt="" className="img-fluid col-12 my-3" />}
-        <div className="ms-3 mb-3">
-          <span className="me-2">{numLikes}</span>
-          {liked ? (
-            <FcLike
-              className="me-3"
+        <div className="col-12 d-flex flex-row justify-content-between">
+          <div className="ms-3 mb-3">
+            <span className="me-2">{numLikes}</span>
+            {liked ? (
+              <FcLike
+                className="me-3"
+                style={{ cursor: "pointer", transform: "scale(1.5)" }}
+                onClick={unlikePost}
+              />
+            ) : (
+              <AiOutlineHeart
+                style={{ cursor: "pointer", transform: "scale(1.5)" }}
+                className="me-3"
+                onClick={likePost}
+              />
+            )}
+            <BiComment
+              className="me-2"
+              onClick={() => setShowComment(!showComment)}
               style={{ cursor: "pointer", transform: "scale(1.5)" }}
-              onClick={unlikePost}
             />
-          ) : (
-            <AiOutlineHeart
-              style={{ cursor: "pointer", transform: "scale(1.5)" }}
-              className="me-3"
-              onClick={likePost}
-            />
-          )}
-          <BiComment
-            className="me-2"
-            onClick={() => setShowComment(!showComment)}
-            style={{ cursor: "pointer", transform: "scale(1.5)" }}
-          />
+          </div>
+          <div className="me-3">
+            <span className="fs-6 text-muted">{`${Math.floor(
+              timeElapsed.temp
+            )} ${timeElapsed.unit} ago`}</span>
+          </div>
         </div>
         {showComment && (
           <div className="m-3 mt-0">

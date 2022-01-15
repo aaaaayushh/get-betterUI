@@ -7,7 +7,7 @@ import UserInfo from "../../components/userInfo";
 
 export default function Profile() {
   const [user, setUser] = useState();
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const id = useParams("userId");
   // console.log(id);
@@ -40,7 +40,7 @@ export default function Profile() {
   }
   return (
     <>
-      <UserInfo user={user} />
+      <UserInfo user={user} posts={posts} />
       {loading ? (
         <Loader />
       ) : (

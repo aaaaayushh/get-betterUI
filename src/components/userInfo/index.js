@@ -4,7 +4,7 @@ import { BsUpload } from "react-icons/bs";
 import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
 import styles from "./useInfo.module.css";
 
-export default function UserInfo({ user }) {
+export default function UserInfo({ user, posts }) {
   const [profilePic, setProfilePic] = useState();
   const [fileError, setFileError] = useState(false);
   const [filePreview, setFilePreview] = useState();
@@ -80,12 +80,14 @@ export default function UserInfo({ user }) {
         picUrl: picUrl,
       });
       console.log(res);
+      setIsOpen(false);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <div className="card col-8 mx-auto shadow-lg d-flex flex-row">
+    <div className="card col-8 mx-auto shadow-lg d-flex flex-row p-3">
       <div className="col-1 m-3">
         {user.profilePic ? (
           <div className={`${styles.picContainer}`}>
@@ -116,12 +118,28 @@ export default function UserInfo({ user }) {
           ref={hiddenFileInput}
         />
       </div>
-      <div className="col-8 my-auto ms-3">
+      <div className="col-8 my-auto ms-3 mt-3">
         <span className="fs-3 fw-bold">
           {user.firstname} {user.lastname}
         </span>
         <br />
         <small className="fw-bolder ms-1">{user.username}</small>
+        <br />
+        <hr />
+        <div className="col-12 d-flex flex-row justify-content-center">
+          <div className="d-flex flex-column col-2 mx-5">
+            <span className="col-12 text-center fw-bolder ms-1 fs-4">
+              {user.friends.length}
+            </span>
+            <span className="col-12 text-center fs-5">Friends</span>
+          </div>
+          <div className="d-flex flex-column col-2">
+            <span className="col-12 text-center fw-bolder ms-1 fs-4">
+              {posts.length}
+            </span>
+            <span className="col-12 text-center fs-5">Posts</span>
+          </div>
+        </div>
       </div>
       <Modal isOpen={isOpen} size="lg" centered toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>

@@ -6,6 +6,7 @@ import FindFriends from "../../components/findFriends/FindFriends";
 import Loader from "../../components/Loader/Loader";
 import Post from "../../components/Post/Post";
 import { AuthContext } from "../../App";
+import ChatSection from "../../components/chatSection/index.js";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -13,19 +14,17 @@ export default function Home() {
   const { state } = useContext(AuthContext);
   useEffect(() => {
     setLoading(true);
-    console.log(state);
+    // console.log(state);
     const fetchPosts = async () => {
       try {
         const res = await axios.get(
           `http://localhost:3001/post/${JSON.parse(state.user)._id}`
         );
-        console.log(res);
-        // res.data.sort((a, b) =>
-        //   getTime(a.createdAt) > getTime(b.createdAt) ? 1 : a.createdAt < b.createdAt ? -1 : 0
-        // );
-        res.data.map((d) => {
-          console.log(new Date(d.createdAt).getTime());
-        });
+        // console.log(res);
+
+        // res.data.map((d) => {
+        //   console.log(new Date(d.createdAt).getTime());
+        // });
         res.data.sort((a, b) => {
           const d1 = new Date(a.createdAt);
           const d2 = new Date(b.createdAt);
@@ -40,24 +39,28 @@ export default function Home() {
     };
     fetchPosts();
     setLoading(false);
-  }, [state]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (loading) {
     return <Loader />;
   }
   return (
     <>
       <div className="col-12 d-flex">
-        <div className="col-2 border-end border-3">
-          <FindFriends />
+        <div className="col-2 border-end border-3 d-flex flex-column">
+          <div style={{ position: "sticky", top: "0" }}>
+            <FindFriends />
+            <ChatSection user={JSON.parse(state.user)} />
+          </div>
         </div>
         <div className="col-10 justify-content-end">
           <div className="container">
             <CreatePost />
           </div>
           <div className="d-flex flex-row">
-            <div className="col-6 mx-auto">
-              {posts &&
-                posts.map((post, key) => (
+            {posts ? (
+              <div className="col-6 mx-auto">
+                {posts.map((post, key) => (
                   <div className="my-3">
                     <Post
                       key={key}
@@ -66,10 +69,16 @@ export default function Home() {
                       caption={post.caption}
                       image={post.image}
                       _id={post._id}
+                      timestamp={post.createdAt}
                     />
                   </div>
                 ))}
-            </div>
+              </div>
+            ) : (
+              <span className="fs-3 mx-auto mt-5">
+                Add friends to see their posts!
+              </span>
+            )}
           </div>
         </div>
       </div>

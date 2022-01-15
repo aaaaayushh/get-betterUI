@@ -1,0 +1,4 @@
+.friendbox:hover {
+  background-color: rgb(186, 179, 179);
+  transition: 0.5s;
+}
