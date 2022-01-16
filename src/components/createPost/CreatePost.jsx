@@ -105,14 +105,17 @@ export default function CreatePost() {
       hiddenFileInput.current.click();
     }
   };
-
   return (
     <>
       <div className="card col-12 rounded-pill d-flex flex-row p-3">
         <div className="col-1 me-3 my-auto">
-          {JSON.parse(state.user).imageUrl ? (
+          {JSON.parse(state.user).imageUrl ||
+          JSON.parse(state.user).profilePic ? (
             <img
-              src={JSON.parse(state.user).imageUrl}
+              src={
+                JSON.parse(state.user).imageUrl ||
+                JSON.parse(state.user).profilePic
+              }
               alt="profile pic"
               className="img-fluid rounded-circle col-10"
             />

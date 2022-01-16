@@ -61,9 +61,8 @@ export default function Home() {
             {posts ? (
               <div className="col-6 mx-auto">
                 {posts.map((post, key) => (
-                  <div className="my-3">
+                  <div className="my-3" key={key}>
                     <Post
-                      key={key}
                       user={post.user}
                       likes={post.likes}
                       caption={post.caption}

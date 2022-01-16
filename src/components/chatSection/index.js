@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import FriendContainer from "./FriendContainer";
+import FriendContainer from "./FriendContainer.jsx";
 
 export default function ChatSection({ user }) {
   // console.log(user);
@@ -19,8 +19,8 @@ export default function ChatSection({ user }) {
       <div className="container mt-2">
         <h3>Your friends</h3>
         <div className="d-flex flex-column">
-          {friends.map((friend) => (
-            <FriendContainer friend={friend} />
+          {friends.map((friend, key) => (
+            <FriendContainer friend={friend} key={key} />
           ))}
         </div>
       </div>
