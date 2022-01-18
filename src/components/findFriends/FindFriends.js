@@ -8,7 +8,7 @@ import PersonContainer from "./PersonContainer";
 
 export default function FindFriends() {
   const [searchVal, setsearchVal] = useState("");
-  const [searchRes, setSearchRes] = useState();
+  const [searchRes, setSearchRes] = useState([]);
   const { state } = useContext(AuthContext);
 
   const searchUser = async (name) => {
@@ -46,13 +46,9 @@ export default function FindFriends() {
             </Button>
           </InputGroup>
         </div>
-        {searchRes && (
-          <div className="border border-3 p-3">
-            {searchRes.map((res) => (
-              <PersonContainer res={res} />
-            ))}
-          </div>
-        )}
+        {searchRes !== [] &&
+          searchVal !== "" &&
+          searchRes.map((res) => <PersonContainer res={res} />)}
       </div>
     </>
   );

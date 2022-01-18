@@ -4,13 +4,14 @@ import axios from "axios";
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
-const useChat = (chatId, userId) => {
+const useChat = (chatId, userId, setLoading) => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef();
 
   useEffect(() => {
     async function getMessages() {
       try {
+        setLoading(true);
         const res = await axios.get(
           `http://localhost:3001/message/getMessages/${userId}/${chatId}`
         );
@@ -22,6 +23,7 @@ const useChat = (chatId, userId) => {
         });
         console.log(res.data.msgs);
         setMessages(res.data.msgs);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }

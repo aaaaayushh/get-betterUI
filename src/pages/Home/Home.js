@@ -41,9 +41,7 @@ export default function Home() {
     setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (loading) {
-    return <Loader />;
-  }
+
   return (
     <>
       <div className="col-12 d-flex">
@@ -58,6 +56,11 @@ export default function Home() {
             <CreatePost />
           </div>
           <div className="d-flex flex-row">
+            {loading && (
+              <div className="col-12 text-center my-auto">
+                <Loader />
+              </div>
+            )}
             {posts ? (
               <div className="col-6 mx-auto">
                 {posts.map((post, key) => (

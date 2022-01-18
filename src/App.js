@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Login } from "./pages/Login/Login";
 import { NavigationBar } from "./components/NavigationBar/Navbar";
 import { Signup } from "./pages/Signup/Signup";
@@ -54,6 +56,7 @@ function App() {
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
+        <ToastContainer closeOnClick theme="colored" />
         <BrowserRouter>
           <NavigationBar />
           <Routes>

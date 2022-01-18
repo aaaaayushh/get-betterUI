@@ -3,6 +3,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { BsPersonCheckFill } from "react-icons/bs";
 import axios from "axios";
 import { AuthContext } from "../../App";
+import { SuccessToast, ErrorToast } from "../../lib/toast";
 
 export default function PersonContainer({ res }) {
   const [friendState, setfriendState] = useState(false);
@@ -16,9 +17,11 @@ export default function PersonContainer({ res }) {
       console.log(res);
       if (res.status === 200) {
         setfriendState(true);
+        SuccessToast("Friend added!");
       }
     } catch (err) {
       console.log(err);
+      ErrorToast("An unexpected error occured");
     }
   };
   const isFriend = (user) => {

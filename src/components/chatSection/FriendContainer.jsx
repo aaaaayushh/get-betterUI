@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../App";
 import { Button, Form, Input } from "reactstrap";
+import { AiFillMessage } from "react-icons/ai";
 import axios from "axios";
 import useChat from "../../hooks/useChat";
 import styles from "./FriendContainer.module.css";
+import Loader from "../Loader/Loader";
 
 export function ChatWindow({ friend, userId }) {
-  const { messages, sendMessage } = useChat(friend._id, userId);
+  const [loading, setLoading] = useState(false);
+  const { messages, sendMessage } = useChat(friend._id, userId, setLoading);
   const [newMessage, setNewMessage] = useState("");
   const handleSendMessage = async () => {
     sendMessage(newMessage);
@@ -24,18 +27,27 @@ export function ChatWindow({ friend, userId }) {
     messages.push({ body: newMessage, ownedByCurrentUser: true });
     setNewMessage("");
   };
+  if (loading) {
+    return (
+      <div className="col-12 text-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
-    <div className={`container`}>
-      <span className="fs-6">{friend.firstname}</span>
-      <div className="d-flex flex-column col-12">
+    <div className="container">
+      <div
+        className="d-flex flex-column-reverse col-12"
+        style={{ overflowY: "scroll", height: "30vh" }}
+      >
         <ol style={{ listStyleType: "none" }}>
           {messages.map((msg, index) => (
             <li
               key={index}
-              className={`col-6 ${
+              className={`col-8 ${
                 msg.ownedByCurrentUser
-                  ? "text-end p-2 bg-success mb-3"
-                  : "bg-primary text-light p-2 ms-auto mb-3"
+                  ? "bg-primary text-light p-2 ms-auto mb-3"
+                  : "text-end p-2 bg-success text-light mb-3"
               }`}
             >
               {msg.body}
@@ -43,9 +55,9 @@ export function ChatWindow({ friend, userId }) {
           ))}
         </ol>
       </div>
-      <Form>
+      <Form className="mt-3 d-flex flex-row">
         <Input
-          type="textarea"
+          type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           required
@@ -76,10 +88,16 @@ export default function FriendContainer({ friend }) {
             className="img-fluid col-12 rounded-circle"
           />
         </div>
-        <div className="col-9 ps-4 my-auto">
+        <div className="col-9 ps-4 my-auto d-flex flex-row justify-content-between">
           <span className="fs-5">
             {friend.firstname} {friend.lastname}
           </span>
+          <div className="my-auto">
+            <AiFillMessage
+              className="text-primary"
+              style={{ transform: "scale(1.5)" }}
+            />
+          </div>
         </div>
       </div>
       {openChat && (

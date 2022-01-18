@@ -24,6 +24,13 @@ export default function Profile() {
         `http://localhost:3001/post/user/${id.userId}`
       );
       console.log(res);
+      res.data.sort((a, b) => {
+        const d1 = new Date(a.createdAt);
+        const d2 = new Date(b.createdAt);
+        if (d1.getTime() > d2.getTime()) return -1;
+        else if (d1.getTime() < d2.getTime()) return 1;
+        else return 0;
+      });
       setPosts(res.data);
     };
     setLoading(true);
@@ -53,6 +60,7 @@ export default function Profile() {
                 likes={post.likes}
                 caption={post.caption}
                 image={post.image}
+                timestamp={post.createdAt}
                 _id={post._id}
               />
             ))}
