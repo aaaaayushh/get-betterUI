@@ -107,7 +107,7 @@ export default function CreatePost() {
   };
   return (
     <>
-      <div className="card col-12 rounded-pill d-flex flex-row p-3">
+      <div className="card col-12 rounded-pill d-flex flex-row p-3 mt-3">
         <div className="col-1 me-3 my-auto">
           {JSON.parse(state.user).imageUrl ||
           JSON.parse(state.user).profilePic ? (

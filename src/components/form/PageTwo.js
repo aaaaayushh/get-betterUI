@@ -11,7 +11,7 @@ export default function PageTwo({ nextStep, prevStep }) {
     });
   };
   return (
-    <div className="card col-8 mx-auto shadow shadow-lg p-5">
+    <div className="card col-8 mx-auto shadow shadow-lg p-5 text-dark mt-5">
       <Form>
         <FormGroup>
           <Label for="remote_work">

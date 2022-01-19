@@ -8,6 +8,10 @@ import {
   NavItem,
   Button,
 } from "reactstrap";
+import { ImHome } from "react-icons/im";
+import { IoPersonSharp } from "react-icons/io5";
+import { GiProgression } from "react-icons/gi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { AuthContext } from "../../App";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
@@ -40,7 +44,7 @@ export const NavigationBar = () => {
   };
   return (
     <div className="col-12">
-      <Navbar expand="md">
+      <Navbar expand="md" className={`${styles.navbar}`}>
         <NavbarBrand href="/">
           <img
             src="https://images.indianexpress.com/2021/01/myntra.png"
@@ -57,9 +61,10 @@ export const NavigationBar = () => {
                   <Link to="/home">
                     <Button
                       outline
-                      color="dark"
-                      className="rounded-pill btn-lg"
+                      color="light"
+                      className="rounded-pill btn-lg border-3"
                     >
+                      <ImHome className="mx-2 mb-1" />
                       Home
                     </Button>
                   </Link>
@@ -68,9 +73,10 @@ export const NavigationBar = () => {
                   <Link to={`/profile/${JSON.parse(authState.user)._id}`}>
                     <Button
                       outline
-                      color="dark"
-                      className="rounded-pill btn-lg"
+                      color="light"
+                      className="rounded-pill btn-lg border-3"
                     >
+                      <IoPersonSharp className="mb-1 mx-1" />
                       Your Profile
                     </Button>
                   </Link>
@@ -79,9 +85,10 @@ export const NavigationBar = () => {
                   <Link to="/get-better">
                     <Button
                       outline
-                      color="dark"
-                      className="rounded-pill btn-lg"
+                      color="light"
+                      className="rounded-pill btn-lg border-3"
                     >
+                      <GiProgression className="mb-2 mx-1" />
                       Get Better
                     </Button>
                   </Link>
@@ -91,8 +98,9 @@ export const NavigationBar = () => {
                     {loading ? (
                       <Button
                         color="primary"
-                        className="rounded-pill btn btn-lg"
+                        className="rounded-pill btn btn-lg border-3"
                       >
+                        <FiLogOut className="mx-2" />
                         <span
                           className="spinner-border spinner-border-sm"
                           role="status"
@@ -103,10 +111,11 @@ export const NavigationBar = () => {
                     ) : (
                       <Button
                         outline
-                        color="dark"
-                        className="rounded-pill btn-lg"
+                        color="light"
+                        className="rounded-pill btn-lg border-3"
                         onClick={logout}
                       >
+                        <FiLogOut className="mx-2" />
                         Logout
                       </Button>
                     )}
@@ -119,16 +128,21 @@ export const NavigationBar = () => {
                   <Link to="/login">
                     <Button
                       outline
-                      className="rounded-pill btn-lg"
-                      color="primary"
+                      className="rounded-pill btn-lg border-3"
+                      color="light"
                     >
+                      <FiLogIn className="mx-1 mb-1" />
                       Login
                     </Button>
                   </Link>
                 </NavItem>
                 <NavItem className="mx-3">
                   <Link to="/signup">
-                    <Button className="rounded-pill btn-lg" color="primary">
+                    <Button
+                      className="rounded-pill btn-lg border-3"
+                      outline
+                      color="light"
+                    >
                       Signup
                     </Button>
                   </Link>

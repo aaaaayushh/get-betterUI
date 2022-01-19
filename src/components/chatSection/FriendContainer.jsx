@@ -94,7 +94,7 @@ export default function FriendContainer({ friend }) {
           </span>
           <div className="my-auto">
             <AiFillMessage
-              className="text-primary"
+              className="text-light"
               style={{ transform: "scale(1.5)" }}
             />
           </div>

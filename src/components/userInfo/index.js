@@ -87,7 +87,7 @@ export default function UserInfo({ user, posts }) {
     }
   };
   return (
-    <div className="card col-8 mx-auto shadow-lg d-flex flex-row p-3">
+    <div className="card col-8 mx-auto shadow-lg d-flex flex-row p-3 bg-dark mt-3 rounded ">
       <div className="col-1 m-3">
         {user.profilePic ? (
           <div className={`${styles.picContainer}`}>

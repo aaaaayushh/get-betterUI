@@ -2,9 +2,10 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { BiComment } from "react-icons/bi";
-import { AuthContext } from "../../App";
 import axios from "axios";
 import { Button, Input, InputGroup } from "reactstrap";
+import { AuthContext } from "../../App";
+import styles from "./Post.module.css";
 export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const [numLikes, setNumLikes] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -103,7 +104,9 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   };
   return (
     <>
-      <div className="card col-12">
+      <div
+        className={`card col-12 ${styles.postBox} bg-dark text-white rounded`}
+      >
         <div className="d-flex my-auto">
           <div className="rounded-circle text-center mt-3 col-1">
             {user.profilePic ? (
