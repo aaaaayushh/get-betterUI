@@ -131,7 +131,6 @@ export const NavigationBar = () => {
                       className="rounded-pill btn-lg border-3"
                       color="light"
                     >
-                      <FiLogIn className="mx-1 mb-1" />
                       Login
                     </Button>
                   </Link>

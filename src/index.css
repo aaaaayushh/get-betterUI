@@ -6,7 +6,7 @@ body {
     sans-serif; */
   /* font-family: "Montserrat", sans-serif; */
 
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(60, 67, 78) !important;

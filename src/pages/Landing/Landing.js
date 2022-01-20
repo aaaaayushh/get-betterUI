@@ -15,7 +15,6 @@ export default function Landing() {
       <div className="col-12">
         <div id={`${styles.container}`}>
           <div className={`${styles.left}`} />
-
           <Particles
             className={`${styles.tsParticles}`}
             init={particlesInit}

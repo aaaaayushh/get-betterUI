@@ -1,0 +1,14 @@
+.form {
+  background-color: rgba(255, 255, 255, 0.13);
+}
+.inputBox {
+  display: inline;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0em 3em;
+  color: white;
+  font-weight: 300;
+  height: 50px;
+  outline: none;
+  border: none;
+}
