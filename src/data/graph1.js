@@ -17,11 +17,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.91,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.44,
       },
       {
@@ -52,11 +52,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.91,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.43,
       },
       {
@@ -87,11 +87,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.91,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.43,
       },
       {
@@ -122,11 +122,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.92,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.42,
       },
       {
@@ -157,11 +157,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.92,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.42,
       },
       {
@@ -192,11 +192,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.93,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.41,
       },
       {
@@ -227,11 +227,11 @@ export const data = [
         value: 0.6,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.93,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.41,
       },
       {
@@ -262,11 +262,11 @@ export const data = [
         value: 0.59,
       },
       {
-        name: "Druguse Disorders",
+        name: "Drug use Disorders",
         value: 0.94,
       },
       {
-        name: "Alcoholuse Disorders",
+        name: "Alcohol use Disorders",
         value: 1.39,
       },
       {

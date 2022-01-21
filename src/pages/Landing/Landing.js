@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Particles from "react-tsparticles";
 import GraphOne from "../../components/LandingGraphs/graphOne.js";
 import styles from "./Landing.module.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import GraphTwo from "../../components/LandingGraphs/graphTwo.js";
+import GraphThree from "../../components/LandingGraphs/graphThree.js";
 
 export default function Landing() {
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, []);
   const particlesInit = (main) => {
     console.log(main);
   };
@@ -89,9 +96,38 @@ export default function Landing() {
           />
         </div>
       </div>
-      <div className="container">
-        <div className="col-6">
+      <div className="d-flex col-8 ms-3 justify-content-around card shadow shadow-lg bg-secondary flex-row my-5 p-3">
+        <div className="col-6 my-auto" data-aos="fade-left">
+          <span className="fs-2 fw-bolder">
+            As of 2017, an estimated 792 million people live with a mental
+            health disorder, which is slightly more than one in ten people
+            globally(10.7%).
+          </span>
+        </div>
+        <div className="col-6 my-5">
           <GraphOne />
+        </div>
+      </div>
+      <div className="d-flex col-8 ms-auto me-3 justify-content-around card shadow shadow-lg bg-secondary flex-row my-5 p-3">
+        <div className="col-6 my-auto" data-aos="fade-left">
+          <span className="fs-2 fw-bolder">
+            In 2017, an estimated 264 million people in the world experienced
+            depression(it ranges mostly between 2%-6% of the world population).
+          </span>
+        </div>
+        <div className="col-6 my-5">
+          <GraphTwo />
+        </div>
+      </div>
+      <div className="d-flex col-12 ms-auto me-3 justify-content-around card shadow shadow-lg bg-secondary flex-row my-5 p-3">
+        <div className="col-6 my-auto" data-aos="fade-left">
+          <span className="fs-2 fw-bolder">
+            In 2017, an estimated 264 million people in the world experienced
+            depression(it ranges mostly between 2%-6% of the world population).
+          </span>
+        </div>
+        <div className="col-6 bg-white my-5">
+          <GraphThree />
         </div>
       </div>
     </>
