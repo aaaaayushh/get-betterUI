@@ -129,7 +129,7 @@ export default function CreatePost() {
         </div>
 
         <div
-          className={`flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white ${styles.postBox}`}
+          className={`d-none d-lg-block flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white ${styles.postBox}`}
           onClick={toggleModal}
           style={{ cursor: "pointer" }}
         >
@@ -139,9 +139,22 @@ export default function CreatePost() {
             : JSON.parse(state.user).firstname}
           ? Feel free to share your successes and your setbacks!
         </div>
+        <div
+          className={`d-block d-lg-none flex-grow-1 me-2 my-auto rounded-pill flex-1 border-0 bg-secondary p-3 text-white ${styles.postBox}`}
+          onClick={toggleModal}
+          style={{ cursor: "pointer" }}
+        >
+          What's up with you,{" "}
+          {JSON.parse(state.user).googleId
+            ? JSON.parse(state.user).givenName
+            : JSON.parse(state.user).firstname}
+          ?
+        </div>
       </div>
       <Modal isOpen={modalOpen} size="lg" centered toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Create a Post</ModalHeader>
+        <ModalHeader toggle={toggleModal} className="text-dark">
+          Create a Post
+        </ModalHeader>
         <ModalBody className="bg-secondary">
           <div>
             <Form>
@@ -190,7 +203,7 @@ export default function CreatePost() {
               <div className="col-12 d-flex justify-content-end">
                 <Button
                   type="submit"
-                  className="col-3 mt-3"
+                  className="col-6 col-md-3 mt-3"
                   color="success rounded-pill "
                   disabled={caption === "" ? true : false}
                   onClick={(e) => uploadPost(e)}

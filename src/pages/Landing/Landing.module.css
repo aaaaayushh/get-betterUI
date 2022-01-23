@@ -1,6 +1,14 @@
 #container {
   position: relative;
 }
+.snapScroll {
+  scroll-snap-type: proximity;
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y proximity;
+}
+.snapScroll > div {
+  scroll-snap-align: start;
+}
 
 .left {
   background: #000;

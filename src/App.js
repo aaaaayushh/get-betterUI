@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/profile/Profile";
+import MobileChat from "./pages/MobilieChat/MobileChat";
 export const AuthContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -69,6 +70,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <GetBetter />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/inbox"
+              element={
+                <PrivateRoute>
+                  <MobileChat />
                 </PrivateRoute>
               }
             />

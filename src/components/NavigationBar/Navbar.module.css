@@ -1,5 +1,7 @@
 .navbar {
   background-color: black;
+  /* position: sticky; */
+  /* top: 0; */
 }
 .nav-item {
   transition: border-width 0.5s !important;
@@ -14,4 +16,7 @@
 }
 .logo {
   width: 5em;
+}
+.navbarToggler {
+  color: white;
 }

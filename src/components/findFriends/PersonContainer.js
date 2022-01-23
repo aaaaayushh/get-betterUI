@@ -31,10 +31,10 @@ export default function PersonContainer({ res }) {
     return false;
   };
   return (
-    <div className="d-flex mb-3 border border-2 p-2">
+    <div className="d-flex mb-3 border border-2 p-2 ">
       <a
         href={`/profile/${res._id}`}
-        className="text-decoration-none text-dark fw-bold"
+        className="text-decoration-none fw-bold text-white"
       >
         <img
           src={res.profilePic ? res.profilePic : "/anonymous-user.jpg"}

@@ -44,7 +44,39 @@ export default function Home() {
 
   return (
     <>
-      <div className="col-12 d-flex">
+      <div className="col-12 d-flex flex-column d-lg-none">
+        <div>
+          <CreatePost />
+        </div>
+        <div className="d-flex flex-row">
+          {loading && (
+            <div className="col-12 text-center my-auto">
+              <Loader />
+            </div>
+          )}
+          {posts ? (
+            <div className="col-12 mx-auto">
+              {posts.map((post, key) => (
+                <div className="my-3" key={key}>
+                  <Post
+                    user={post.user}
+                    likes={post.likes}
+                    caption={post.caption}
+                    image={post.image}
+                    _id={post._id}
+                    timestamp={post.createdAt}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <span className="fs-3 mx-auto mt-5">
+              Add friends to see their posts!
+            </span>
+          )}
+        </div>
+      </div>
+      <div className="col-12 d-none d-lg-flex">
         <div className="col-2 border-end border-3 d-flex flex-column">
           <div style={{ position: "sticky", top: "0" }}>
             <FindFriends />

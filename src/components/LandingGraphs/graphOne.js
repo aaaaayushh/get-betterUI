@@ -45,6 +45,7 @@ export default function GraphOne() {
         </DropdownMenu>
       </Dropdown>
       <BarGraph
+        yLabel="% of world population"
         xKey="name"
         yKey="value"
         data={barData}

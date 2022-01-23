@@ -10,21 +10,6 @@ import {
 } from "recharts";
 import styles from "./BarGraph.module.css";
 
-function CustomLabel({ x, y, stroke, value }) {
-  return (
-    <text
-      x={x}
-      y={y}
-      dy={-4}
-      fill={`#fff`}
-      fontSize={10}
-      offset="5"
-      textAnchor="middle"
-    >
-      {value}
-    </text>
-  );
-}
 function CustomTooltip({ payload, layout }) {
   if (payload[0]) {
     return (
@@ -37,6 +22,8 @@ function CustomTooltip({ payload, layout }) {
 }
 export default function BarGraph({
   data,
+  xLabel,
+  yLabel,
   xKey,
   yKey,
   fill,
@@ -59,11 +46,13 @@ export default function BarGraph({
           <XAxis
             dataKey={xKey}
             type={layout === "vertical" ? "number" : "category"}
+            label={xLabel}
           />
           <YAxis
             dataKey={yKey}
             width={150}
             type={layout === "vertical" ? "category" : "number"}
+            label={{ value: yLabel, angle: -90, position: "center" }}
           />
           <Tooltip content={<CustomTooltip layout={layout} />} />
           <Bar
