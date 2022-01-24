@@ -10,7 +10,7 @@ import styles from "./useInfo.module.css";
 
 export default function UserInfo({ user, posts }) {
   const [profilePic, setProfilePic] = useState();
-  const [fileError, setFileError] = useState(false);
+  const [, setFileError] = useState(false);
   const [filePreview, setFilePreview] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const hiddenFileInput = React.useRef(null);

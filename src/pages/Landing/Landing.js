@@ -12,17 +12,24 @@ export default function Landing() {
     AOS.init({ duration: 3000 });
   }, []);
   const particlesInit = (main) => {
-    console.log(main);
+    // console.log(main);
   };
   const particlesLoaded = (container) => {
-    console.log(container);
+    // console.log(container);
   };
   return (
     <>
       <div className={`${styles.snapScroll}`} dir="ltr">
         <div className="col-12">
           <div id={`${styles.container}`}>
-            <div className={`${styles.left}`} />
+            <div
+              className={`${styles.left} d-flex justify-content-center`}
+            ></div>
+            <img
+              src="/temp.png"
+              alt="cover"
+              className={`img-fluid ${styles.coverImg}`}
+            />
             <Particles
               className={`${styles.tsParticles}`}
               init={particlesInit}
@@ -37,7 +44,8 @@ export default function Landing() {
                   size: "cover",
                 },
                 fullScreen: {
-                  enable: false,
+                  enable: true,
+                  zIndex: -1,
                 },
                 particles: {
                   color: {

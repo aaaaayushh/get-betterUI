@@ -52,7 +52,7 @@ export default function Profile() {
         <Loader />
       ) : (
         <div className="col-12 col-md-8 col-lg-6 mt-5 mx-auto">
-          {posts &&
+          {posts.length > 0 ? (
             posts.map((post, key) => (
               <Post
                 key={key}
@@ -63,7 +63,12 @@ export default function Profile() {
                 timestamp={post.createdAt}
                 _id={post._id}
               />
-            ))}
+            ))
+          ) : (
+            <div className="col-12 mx-auto text-light text-center">
+              <h3>No posts to show!</h3>
+            </div>
+          )}
         </div>
       )}
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import AOS from "aos";
+// import AOS from "aos";
 import { data } from "../../data/graph3";
 import "aos/dist/aos.css";
 import ScatterGraph from "../ScatterGraph/ScatterGraph";
