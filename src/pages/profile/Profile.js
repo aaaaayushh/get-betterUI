@@ -51,7 +51,7 @@ export default function Profile() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="col-6 mt-5 mx-auto">
+        <div className="col-12 col-md-8 col-lg-6 mt-5 mx-auto">
           {posts &&
             posts.map((post, key) => (
               <Post

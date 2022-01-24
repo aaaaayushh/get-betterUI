@@ -8,7 +8,6 @@ import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import styles from "./Login.module.css";
 import Particles from "react-tsparticles";
-import { ErrorToast } from "../../lib/toast";
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);

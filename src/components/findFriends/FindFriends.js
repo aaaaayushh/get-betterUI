@@ -19,7 +19,6 @@ export default function FindFriends() {
             JSON.parse(state.user)._id
           }/${name}`
         );
-        console.log(res);
         setSearchRes(res.data.users);
       } catch (err) {
         console.log(err);

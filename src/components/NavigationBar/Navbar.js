@@ -72,7 +72,7 @@ export const NavigationBar = () => {
                     <Button
                       outline
                       color="light"
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                     >
                       <ImHome className="mx-2 mb-1" />
                       Home
@@ -84,7 +84,7 @@ export const NavigationBar = () => {
                     <Button
                       outline
                       color="light"
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                     >
                       <IoPersonSharp className="mb-1 mx-1" />
                       Your Profile
@@ -96,7 +96,7 @@ export const NavigationBar = () => {
                     <Button
                       outline
                       color="light"
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                     >
                       <AiFillMessage className="mb-1 mx-1" />
                       Inbox
@@ -108,7 +108,7 @@ export const NavigationBar = () => {
                     <Button
                       outline
                       color="light"
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                     >
                       <GiProgression className="mb-2 mx-1" />
                       Get Better
@@ -120,7 +120,7 @@ export const NavigationBar = () => {
                     {loading ? (
                       <Button
                         color="primary"
-                        className="rounded-pill btn btn-lg border-0 border-lg-3"
+                        className="rounded-pill btn btn-lg border-0 "
                       >
                         <FiLogOut className="mx-2" />
                         <span
@@ -134,7 +134,7 @@ export const NavigationBar = () => {
                       <Button
                         outline
                         color="light"
-                        className="rounded-pill btn-lg border-0 border-lg-3"
+                        className="rounded-pill btn-lg border-0 "
                         onClick={logout}
                       >
                         <FiLogOut className="mx-2" />
@@ -150,7 +150,7 @@ export const NavigationBar = () => {
                   <Link to="/login">
                     <Button
                       outline
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                       color="light"
                     >
                       Login
@@ -160,7 +160,7 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3">
                   <Link to="/signup">
                     <Button
-                      className="rounded-pill btn-lg border-0 border-lg-3"
+                      className="rounded-pill btn-lg border-0 "
                       outline
                       color="light"
                     >

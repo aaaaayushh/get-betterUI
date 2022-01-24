@@ -107,8 +107,8 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
       <div
         className={`card col-12 ${styles.postBox} bg-dark text-white rounded`}
       >
-        <div className="d-flex my-auto">
-          <div className="rounded-circle text-center mt-3 col-1">
+        <div className="d-flex align-items-center mt-3">
+          <div className="rounded-circle text-center col-1 ">
             {user.profilePic ? (
               <img
                 src={user.profilePic}
@@ -123,7 +123,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
               />
             )}
           </div>
-          <div className="fs-5 mt-4">
+          <div className="fs-5 ">
             {user.firstname} {user.lastname}
           </div>
         </div>

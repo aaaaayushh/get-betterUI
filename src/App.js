@@ -42,6 +42,13 @@ const reducer = (state, action) => {
         isAuth: false,
         user: null,
       };
+    case "ADDFRIEND":
+      console.log(action.payload.user);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      return {
+        ...state,
+        user: JSON.stringify(action.payload.user),
+      };
     default:
       return state;
   }
@@ -64,7 +71,14 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile/:userId" element={<Profile />} />
+            <Route
+              path="/profile/:userId"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/get-better"
               element={
