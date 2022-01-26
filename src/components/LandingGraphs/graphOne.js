@@ -26,10 +26,6 @@ export default function GraphOne() {
   }, [year]);
   return (
     <div className="col-12" data-aos="zoom-in">
-      <h4>
-        Share of world population suffering from mental health disorders(%) -
-        {year}
-      </h4>
       <Dropdown
         className="mb-3 text-end"
         isOpen={isOpen}
@@ -52,6 +48,10 @@ export default function GraphOne() {
         fill="#8884d8"
         classname="bg-light rounded"
       />
+      <h4>
+        Share of world population suffering from mental health disorders(%) -
+        {year}
+      </h4>
     </div>
   );
 }

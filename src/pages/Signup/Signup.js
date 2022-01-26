@@ -218,7 +218,7 @@ export const Signup = () => {
       </div>
       <div className="container d-flex align-items-center">
         <div
-          className={`col-12 col-md-10 col-lg-6 mx-auto container px-5 ${styles.form}`}
+          className={`col-12 col-md-10 col-lg-6 mx-auto container px-md-5 ${styles.form}`}
         >
           <Form onSubmit={handleSubmit}>
             <h1 className="text-center mt-3">Signup</h1>
@@ -272,7 +272,7 @@ export const Signup = () => {
                 Password
               </Label>
               <input
-                className={`col-11 ${styles.inputBox}`}
+                className={`col-10 col-md-11 ${styles.inputBox}`}
                 type={showPassword[0] ? "text" : "password"}
                 name="password"
                 id="password"
@@ -281,7 +281,7 @@ export const Signup = () => {
                 required
               />
               <Button
-                className="col-1"
+                className="col-2 col-md-1"
                 style={{ height: "50px" }}
                 onClick={() =>
                   setShowPassword([!showPassword[0], showPassword[1]])
@@ -299,7 +299,7 @@ export const Signup = () => {
                 Confirm Password
               </Label>
               <input
-                className={`col-11 ${styles.inputBox}`}
+                className={`col-10 col-md-11 ${styles.inputBox}`}
                 type={showPassword[1] ? "text" : "password"}
                 name="confirm"
                 id="confirm"
@@ -308,7 +308,7 @@ export const Signup = () => {
                 required
               />
               <Button
-                className="col-1"
+                className="col-2 col-md-1"
                 style={{ height: "50px" }}
                 onClick={() =>
                   setShowPassword([showPassword[0], !showPassword[1]])
@@ -323,7 +323,7 @@ export const Signup = () => {
               {confirmPass !== data.password && (
                 <FormText>Password does not match</FormText>
               )}
-              <div className="mt-5 text-center">
+              <div className="mt-3 mt-md-5 text-center">
                 {loading ? (
                   <Button color="primary" className="rounded-pill btn btn-lg">
                     <span
@@ -360,7 +360,7 @@ export const Signup = () => {
                     <Button
                       onClick={renderProps.onClick}
                       disabled={renderProps.disabled}
-                      className="my-4 col-5 mx-auto rounded-pill"
+                      className="my-2 my-md-4 col-10 col-md-5 mx-auto rounded-pill"
                       color="primary"
                       outline
                     >

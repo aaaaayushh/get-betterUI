@@ -248,7 +248,7 @@ export const Login = () => {
                 Password
               </Label>
               <input
-                className={`col-11 ${styles.inputBox}`}
+                className={`col-10 col-md-11 ${styles.inputBox}`}
                 type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
@@ -258,7 +258,7 @@ export const Login = () => {
                 required
               />
               <Button
-                className="col-1"
+                className="col-2 col-md-1"
                 style={{ height: "50px" }}
                 onClick={() => setShowPassword(!showPassword)}
               >

@@ -29,7 +29,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
     // console.log(d);
     const currDate = new Date();
     var temp = (currDate.getTime() - d.getTime()) / 1000;
-    // console.log(temp);
+    console.log(temp);
     if (temp > 60) {
       temp = temp / 60;
       if (temp > 60) {
