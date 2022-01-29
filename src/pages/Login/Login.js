@@ -280,7 +280,11 @@ export const Login = () => {
                   <span className="sr-only">Logging in...</span>
                 </Button>
               ) : (
-                <Button color="primary" className="rounded-pill btn btn-lg">
+                <Button
+                  color="primary"
+                  className="rounded-pill btn btn-lg"
+                  id="loginButton"
+                >
                   Login
                 </Button>
               )}
