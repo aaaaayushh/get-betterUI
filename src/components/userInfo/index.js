@@ -71,7 +71,7 @@ export default function UserInfo({ user, posts }) {
     formData.append("file", profilePic);
     try {
       const res = await axios.post(
-        "http://localhost:3001/post/uploadImage",
+        `http://${process.env.REACT_APP_SERVER}/post/uploadImage`,
         formData,
         {
           headers: {
@@ -85,10 +85,13 @@ export default function UserInfo({ user, posts }) {
       console.log(err);
     }
     try {
-      const res = await axios.post("http://localhost:3001/user/updateDp", {
-        id: user._id,
-        picUrl: picUrl,
-      });
+      const res = await axios.post(
+        `http://${process.env.REACT_APP_SERVER}/user/updateDp`,
+        {
+          id: user._id,
+          picUrl: picUrl,
+        }
+      );
       console.log(res);
       setIsOpen(false);
       window.location.reload();

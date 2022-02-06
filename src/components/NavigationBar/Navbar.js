@@ -8,6 +8,7 @@ import {
   NavItem,
   Button,
 } from "reactstrap";
+import { useLocation } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { IoPersonSharp } from "react-icons/io5";
 import { GiHamburgerMenu, GiProgression } from "react-icons/gi";
@@ -21,17 +22,15 @@ export const NavigationBar = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   console.log(authState.user);
-  //   console.log(JSON.parse(authState.user));
-  // }, []);
+  const location = useLocation();
   function toggle() {
     setIsOpen(!isOpen);
   }
   const logout = () => {
     setLoading(true);
-    fetch("http://localhost:3001/auth/logout", { method: "get" })
+    fetch(`http://${process.env.REACT_APP_SERVER}/auth/logout`, {
+      method: "get",
+    })
       .then((res) => {
         if (res.ok) {
           // console.log(res.json);
@@ -49,8 +48,8 @@ export const NavigationBar = () => {
       <Navbar expand="lg" className={`${styles.navbar}`}>
         <NavbarBrand href="/">
           <img
-            src="https://images.indianexpress.com/2021/01/myntra.png"
-            alt=""
+            src="/brain-svgrepo-com.svg"
+            alt="logo"
             className={`${styles.logo} img-fluid`}
           />
         </NavbarBrand>
@@ -70,7 +69,7 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3">
                   <Link to="/home">
                     <Button
-                      outline
+                      outline={location.pathname !== "/home"}
                       color="light"
                       className="rounded-pill btn-lg border-0 "
                     >
@@ -82,7 +81,9 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3">
                   <Link to={`/profile/${JSON.parse(authState.user)._id}`}>
                     <Button
-                      outline
+                      outline={
+                        location.pathname !== `/profile/${authState.user._id}`
+                      }
                       color="light"
                       className="rounded-pill btn-lg border-0 "
                     >
@@ -94,7 +95,7 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3 d-inline d-lg-none">
                   <Link to="/inbox">
                     <Button
-                      outline
+                      outline={location.pathname !== "/inbox"}
                       color="light"
                       className="rounded-pill btn-lg border-0 "
                     >
@@ -106,7 +107,7 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3">
                   <Link to="/get-better">
                     <Button
-                      outline
+                      outline={location.pathname !== "/get-better"}
                       color="light"
                       className="rounded-pill btn-lg border-0 "
                     >
@@ -149,7 +150,7 @@ export const NavigationBar = () => {
                 <NavItem className="mx-3">
                   <Link to="/login">
                     <Button
-                      outline
+                      outline={location.pathname !== "/login"}
                       className="rounded-pill btn-lg border-0 "
                       color="light"
                     >
@@ -161,7 +162,7 @@ export const NavigationBar = () => {
                   <Link to="/signup">
                     <Button
                       className="rounded-pill btn-lg border-0 "
-                      outline
+                      outline={location.pathname !== "/signup"}
                       color="light"
                     >
                       Signup

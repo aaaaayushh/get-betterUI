@@ -20,7 +20,7 @@ export function ChatWindow({ friend, userId }) {
       message: newMessage,
     };
     const res = await axios.post(
-      "http://localhost:3001/message/createMessage",
+      `http://${process.env.REACT_APP_SERVER}/message/createMessage`,
       message
     );
     console.log(res);

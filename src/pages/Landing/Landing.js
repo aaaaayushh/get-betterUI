@@ -5,7 +5,6 @@ import styles from "./Landing.module.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import GraphTwo from "../../components/LandingGraphs/graphTwo.js";
-import GraphThree from "../../components/LandingGraphs/graphThree.js";
 
 export default function Landing() {
   useEffect(() => {

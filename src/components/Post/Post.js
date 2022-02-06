@@ -17,7 +17,9 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const { state } = useContext(AuthContext);
   const fetchComments = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/post/${_id}/comments`);
+      const res = await axios.get(
+        `http://${process.env.REACT_APP_SERVER}/post/${_id}/comments`
+      );
       // console.log(res);
       setComments(res.data);
     } catch (err) {
@@ -26,30 +28,35 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   }, [_id]);
   function getElapsedTime(inputTimestamp) {
     const d = new Date(inputTimestamp);
-    // console.log(d);
     const currDate = new Date();
-    var temp = (currDate.getTime() - d.getTime()) / 1000;
-    console.log(temp);
-    if (temp > 60) {
-      temp = temp / 60;
-      if (temp > 60) {
-        temp = temp / 60;
-        if (temp > 24) {
-          temp = temp / 24;
-          return { temp, unit: "days" };
+    var diff = (currDate.getTime() - d.getTime()) / 1000;
+    if (diff > 60) {
+      diff = diff / 60;
+      if (diff > 60) {
+        diff = diff / 60;
+        if (diff > 24) {
+          diff = diff / 24;
+          if (diff > 30) {
+            diff = diff / 30;
+            if (diff > 12) {
+              diff = diff / 12;
+              return { diff, unit: diff > 1 ? "years" : "year" };
+            }
+            return { diff, unit: diff > 1 ? "months" : "month" };
+          }
+          return { diff, unit: diff > 1 ? "days" : "day" };
         } else {
-          return { temp, unit: "hours" };
+          return { diff, unit: diff > 1 ? "hours" : "hour" };
         }
       } else {
-        return { temp, unit: "minutes" };
+        return { diff, unit: diff > 1 ? "minutes" : "minute" };
       }
     } else {
-      return { temp, unit: "seconds" };
+      return { diff, unit: "seconds" };
     }
   }
   useEffect(() => {
     fetchComments();
-    // console.log(getElapsedTime(timestamp));
     setTimeElapsed(getElapsedTime(timestamp));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,9 +69,12 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   }, [likes, state.user]);
   const likePost = async () => {
     try {
-      await axios.post(`http://localhost:3001/post/${_id}/like`, {
-        id: JSON.parse(state.user)._id,
-      });
+      await axios.post(
+        `http://${process.env.REACT_APP_SERVER}/post/${_id}/like`,
+        {
+          id: JSON.parse(state.user)._id,
+        }
+      );
       // console.log(res);
       setLiked(true);
       setNumLikes(numLikes + 1);
@@ -74,9 +84,12 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   };
   const unlikePost = async () => {
     try {
-      await axios.post(`http://localhost:3001/post/${_id}/unlike`, {
-        id: JSON.parse(state.user)._id,
-      });
+      await axios.post(
+        `http://${process.env.REACT_APP_SERVER}/post/${_id}/unlike`,
+        {
+          id: JSON.parse(state.user)._id,
+        }
+      );
       // console.log(res);
       setLiked(false);
       setNumLikes(numLikes - 1);
@@ -88,7 +101,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const addComment = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:3001/post/${_id}/comment`,
+        `http://${process.env.REACT_APP_SERVER}/post/${_id}/comment`,
         {
           user: JSON.parse(state.user)._id,
           comment,
@@ -155,7 +168,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
           </div>
           <div className="me-3">
             <span className="fs-6 text-muted">{`${Math.floor(
-              timeElapsed.temp
+              timeElapsed.diff
             )} ${timeElapsed.unit} ago`}</span>
           </div>
         </div>

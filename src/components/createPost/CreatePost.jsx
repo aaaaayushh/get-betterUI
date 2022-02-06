@@ -73,7 +73,7 @@ export default function CreatePost() {
       formData.append("file", fileUpload);
       try {
         const res = await axios.post(
-          "http://localhost:3001/post/uploadImage",
+          `http://${process.env.REACT_APP_SERVER}/post/uploadImage`,
           formData,
           {
             headers: {
@@ -90,7 +90,10 @@ export default function CreatePost() {
     try {
       const post = { caption, image: picUrl, user: JSON.parse(state.user) };
       console.log(post);
-      const res = await axios.post("http://localhost:3001/post", post);
+      const res = await axios.post(
+        `http://${process.env.REACT_APP_SERVER}/post`,
+        post
+      );
       console.log(res);
       setLoading(false);
       setModalOpen(false);

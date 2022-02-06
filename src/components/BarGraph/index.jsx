@@ -50,7 +50,7 @@ export default function BarGraph({
           />
           <YAxis
             dataKey={yKey}
-            width={80}
+            width={100}
             type={layout === "vertical" ? "category" : "number"}
             label={{ value: yLabel, angle: -90, position: "center" }}
           />

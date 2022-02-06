@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import PageOne from "../../components/form/PageOne";
 import PageTwo from "../../components/form/PageTwo";
 import PageThree from "../../components/form/PageThree";
@@ -44,22 +45,41 @@ const reducer = (state, action) => {
 };
 export default function GetBetter() {
   const [step, setStep] = useState(1);
+  const [modal, setModal] = useState(true);
   const [state, dispatch] = React.useReducer(reducer, initState);
-  //   useEffect(() => {
-  //     console.log(state);
-  //   }, [state]);
+
   const prevStep = () => {
     setStep(step - 1);
   };
   const nextStep = () => {
     setStep(step + 1);
   };
+  function toggle() {
+    setModal(!modal);
+  }
 
   switch (step) {
     case 1:
       return (
         <FormContext.Provider value={{ state, dispatch }}>
-          <PageOne nextStep={nextStep} />
+          <>
+            <PageOne nextStep={nextStep} />
+            <Modal isOpen={modal} size="lg" centered toggle={toggle}>
+              <ModalHeader toggle={toggle} className="text-dark">
+                Disclaimer
+              </ModalHeader>
+              <ModalBody>
+                <div className="col-10 mx-auto text-dark fs-5 p-4">
+                  This is a preliminary model whose primary aim is to evaluate
+                  whether it would be advisable for you to seek medical help for
+                  your mental health issues given your current employment status
+                  and health details. However, if the results of this model do
+                  not seem satisfactory to you please ignore it and seek
+                  whatever help is available to you.
+                </div>
+              </ModalBody>
+            </Modal>
+          </>
         </FormContext.Provider>
       );
     case 2:

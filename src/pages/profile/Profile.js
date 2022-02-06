@@ -14,14 +14,14 @@ export default function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `http://localhost:3001/user/getUser/${id.userId}`
+        `http://${process.env.REACT_APP_SERVER}/user/getUser/${id.userId}`
       );
       console.log(res);
       setUser(res.data.user);
     };
     const fetchUserPosts = async () => {
       const res = await axios.get(
-        `http://localhost:3001/post/user/${id.userId}`
+        `http://${process.env.REACT_APP_SERVER}/post/user/${id.userId}`
       );
       console.log(res);
       res.data.sort((a, b) => {
@@ -54,15 +54,16 @@ export default function Profile() {
         <div className="col-12 col-md-8 col-lg-6 mt-5 mx-auto">
           {posts.length > 0 ? (
             posts.map((post, key) => (
-              <Post
-                key={key}
-                user={post.user}
-                likes={post.likes}
-                caption={post.caption}
-                image={post.image}
-                timestamp={post.createdAt}
-                _id={post._id}
-              />
+              <div className="my-3" key={key}>
+                <Post
+                  user={post.user}
+                  likes={post.likes}
+                  caption={post.caption}
+                  image={post.image}
+                  timestamp={post.createdAt}
+                  _id={post._id}
+                />
+              </div>
             ))
           ) : (
             <div className="col-12 mx-auto text-light text-center">
