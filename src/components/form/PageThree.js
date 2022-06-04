@@ -25,9 +25,9 @@ export default function PageThree({ nextStep, prevStep }) {
             name="seek_help"
             id="seek_help"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't Know</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Don't Know</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -42,9 +42,9 @@ export default function PageThree({ nextStep, prevStep }) {
             name="anonymity"
             id="anonymity"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't Know</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Don't Know</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -59,9 +59,11 @@ export default function PageThree({ nextStep, prevStep }) {
             name="leave"
             id="leave"
           >
-            <option>Somewhat easy</option>
-            <option>Somewhat difficult</option>
-            <option>Don't Know</option>
+            <option value={4}>Very easy</option>
+            <option value={2}>Somewhat easy</option>
+            <option value={1}>Somewhat difficult</option>
+            <option value={3}>Very difficult</option>
+            <option value={0}>Don't Know</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -76,9 +78,9 @@ export default function PageThree({ nextStep, prevStep }) {
             name="mental_health_consequence"
             id="mental_health_consequence"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Maybe</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Maybe</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -93,9 +95,26 @@ export default function PageThree({ nextStep, prevStep }) {
             name="phys_health_consequence"
             id="phys_health_consequence"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Maybe</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Maybe</option>
+          </Input>
+        </FormGroup>
+        <FormGroup>
+          <Label for="coworkers">
+            Would you be willing to discuss a mental health issue with your
+            coworkers?
+          </Label>
+          <Input
+            type="select"
+            value={state.coworkers}
+            onChange={(e) => handleChange(e)}
+            name="coworkers"
+            id="coworkers"
+          >
+            <option value={2}>Yes</option>
+            <option value={0}>No</option>
+            <option value={1}>Some of them</option>
           </Input>
         </FormGroup>
         <div className="d-flex justify-content-between">

@@ -13,6 +13,25 @@ export default function PageTwo({ nextStep, prevStep }) {
   return (
     <div className="card col-12 col-md-8 mx-auto shadow shadow-lg p-5 text-dark mt-5">
       <Form>
+      <FormGroup>
+          <Label for="no_employees">
+            How many employees does your company or organisation have?
+          </Label>
+          <Input
+            onChange={(e) => handleChange(e)}
+            type="select"
+            name="no_employees"
+            id="no_employees"
+            value={state.no_employees}
+          >
+            <option value={0}>1-5</option>
+            <option value={4}>6-25</option>
+            <option value={2}>26-100</option>
+            <option value={1}>100-500</option>
+            <option value={3}>500-1000</option>
+            <option value={5}>More than 1000</option>
+          </Input>
+        </FormGroup>
         <FormGroup>
           <Label for="remote_work">
             Do you work remotely at least 50% of the time?
@@ -24,8 +43,8 @@ export default function PageTwo({ nextStep, prevStep }) {
             value={state.remote_work}
             onChange={(e) => handleChange(e)}
           >
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value={1}>Yes</option>
+            <option value={0}>No</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -39,8 +58,8 @@ export default function PageTwo({ nextStep, prevStep }) {
             id="tech_company"
             value={state.tech_company}
           >
-            <option>Yes</option>
-            <option>No</option>
+            <option value={1}>Yes</option>
+            <option value={0}>No</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -54,9 +73,9 @@ export default function PageTwo({ nextStep, prevStep }) {
             id="benefits"
             value={state.benefits}
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't Know</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Don't Know</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -71,9 +90,9 @@ export default function PageTwo({ nextStep, prevStep }) {
             id="care_options"
             value={state.care_options}
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Not Sure</option>
+            <option value={2}>Yes</option>
+            <option value={0}>No</option>
+            <option value={1}>Not Sure</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -88,9 +107,9 @@ export default function PageTwo({ nextStep, prevStep }) {
             id="wellness_program"
             value={state.wellness_program}
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't Know</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Don't Know</option>
           </Input>
         </FormGroup>
         <div className="d-flex justify-content-between">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import axios from 'axios';
 import PageOne from "../../components/form/PageOne";
 import PageTwo from "../../components/form/PageTwo";
 import PageThree from "../../components/form/PageThree";
@@ -7,27 +8,29 @@ import PageFour from "../../components/form/PageFour";
 
 export const FormContext = React.createContext();
 const initState = {
-  self_employed: "No",
-  fam_history: "No",
-  treatment: "No",
-  work_interfere: "Never",
-  no_employees: "1-5",
-  remote_work: "No",
-  tech_company: "Yes",
-  benefits: "Don't Know",
-  care_options: "Not Sure",
-  wellness_program: "Don't Know",
-  seek_help: "Don't Know",
-  anonymity: "Don't Know",
-  leave: "Don't Know",
-  mental_health_consequence: "No",
-  phys_health_consequence: "No",
-  coworkers: "No",
-  supervisor: "No",
-  mental_health_interview: "No",
-  phys_health_interview: "No",
-  mental_vs_physical: "Don't Know",
-  obs_consequence: "No",
+  age:21,
+  gender:0,
+  self_employed: 0,
+  fam_history: 0,
+  treatment: 0,
+  work_interfere: 0,
+  no_employees: 0,
+  remote_work: 0,
+  tech_company: 0,
+  benefits: 0,
+  care_options: 0,
+  wellness_program: 0,
+  seek_help: 0,
+  anonymity: 0,
+  leave: 0,
+  mental_health_consequence: 0,
+  phys_health_consequence: 0,
+  coworkers: 0,
+  supervisor: 0,
+  mental_health_interview: 0,
+  phys_health_interview: 0,
+  mental_vs_physical: 0,
+  obs_consequence: 0,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -37,12 +40,26 @@ const reducer = (state, action) => {
         [action.payload.name]: action.payload.value,
       };
     case "SUBMIT":
-      console.log(state);
-      return state;
+      const res = submitData(state);
+      return res;
     default:
       return state;
   }
 };
+async function submitData(state){
+  // const res = await axios.post(`http://${process.env.REACT_APP_SERVER}/user/mlData`,state);
+  const mlData = Object.keys(state).map((key,index)=>{
+    return state[key];
+  });
+  console.log(mlData);
+  const headers = {
+    'Content-Type':'application/x-www-form-urlencoded',
+    'Access-Control-Allow-Origin':'*'
+  }
+  const res = await axios.post("https://nkd3owrj4k.execute-api.ap-south-1.amazonaws.com/default/demoDocker",mlData,headers);
+  console.log(res);
+  return res;
+}
 export default function GetBetter() {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(true);

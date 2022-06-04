@@ -22,23 +22,6 @@ export default function PageFour({ prevStep }) {
     <div className="card col-12 col-md-8 mx-auto shadow shadow-lg p-5 text-dark mt-5">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <FormGroup>
-          <Label for="coworkers">
-            Would you be willing to discuss a mental health issue with your
-            coworkers?
-          </Label>
-          <Input
-            type="select"
-            value={state.coworkers}
-            onChange={(e) => handleChange(e)}
-            name="coworkers"
-            id="coworkers"
-          >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Some of them</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
           <Label for="supervisor">
             Would you be willing to discuss a mental health issue with your
             direct supervisor(s)?
@@ -50,8 +33,9 @@ export default function PageFour({ prevStep }) {
             name="supervisor"
             id="supervisor"
           >
-            <option>Yes</option>
-            <option>No</option>
+            <option value={2}>Yes</option>
+            <option value={0}>No</option>
+            <option value={1}>Some of them</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -66,9 +50,9 @@ export default function PageFour({ prevStep }) {
             name="mental_health_interview"
             id="mental_health_interview"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Maybe</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Maybe</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -83,9 +67,9 @@ export default function PageFour({ prevStep }) {
             name="phys_health_interview"
             id="phys_health_interview"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Maybe</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Maybe</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -100,9 +84,9 @@ export default function PageFour({ prevStep }) {
             name="mental_vs_physical"
             id="mental_vs_physical"
           >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't know</option>
+            <option value={2}>Yes</option>
+            <option value={1}>No</option>
+            <option value={0}>Don't know</option>
           </Input>
         </FormGroup>
         <FormGroup>
@@ -117,8 +101,8 @@ export default function PageFour({ prevStep }) {
             name="obs_consequence"
             id="obs_consequence"
           >
-            <option>Yes</option>
-            <option>No</option>
+            <option value={1}>Yes</option>
+            <option value={0}>No</option>
           </Input>
         </FormGroup>
 
