@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Get Better - A social media application that doesn't ruin your mental health(unheard of, I know)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Building a social media application from scratch is no easy task; designing everything from the frontend to the databases takes a lot of time.
 
-## Available Scripts
+But, after a lot of hard work, I'm proud to present a working prototype of a social media application that I built entirely on my own! There is a lot of work left on this application and I'll try my best to keep updating it with time, hopefully one day making it feasible to be used in the real world.
 
-In the project directory, you can run:
+This repository is for the frontend side of the application, built entirely using React.js
 
-### `yarn start`
+The live version can be found here: https://fabulous-cactus-b629a1.netlify.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I am aware of the plethora of bugs that are *bugging*(hehe) this application and I will do my best to resolve them as soon as possible
+I'll list down the ones that I'm planning to prioritise solving
+- Google login does not work(issue with Google console, might be able to fix very soon or very late, could be either)
+- Picture upload does not work(issue with Google Storage may take some time to sort)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+While I'm here, I'll list down a list of improvements that I want to make/features I want to add to this application in the future
+- Migrate from Javascript to Typescript
+- Migrate from React.js to Next.js(basically, make this site fast)
+- Integrate functionality to upload multiple pictures in one post
+- Integrate functionality to upload videos
+- Integrate login with Github, other social media applications(you know, the ones that ruin your mental health)
+- Implement debouncing for the search users functionality(duh! don't know how I forgot to do this)
+- The icing on this cake - the delicious, thick, chocolatey, mouth-watering icing, my very own machine-learning model, is not deployed yet. I'm figuring out a way to do it on AWS but unfortunately, it's going to take a while. So, the Get-Better functionality on the Get-Better social media application is not ready yet. Go figure.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Here's a preview of the landing page, let me know if you like the design!
+![Screenshot from 2022-08-03 20-14-06](https://user-images.githubusercontent.com/55553065/182637660-43982b1c-1b21-4ccd-853d-b49d89ab7037.png)
