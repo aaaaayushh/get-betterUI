@@ -18,7 +18,7 @@ export const isFriend = (user, state) => {
 export const addFriend = async (id, state, setfriendState, dispatch) => {
   try {
     const res = await axios.post(
-      `http://${process.env.REACT_APP_SERVER}/user/addFriend/${id}`,
+      `https://${process.env.REACT_APP_SERVER}/user/addFriend/${id}`,
       {
         userid: JSON.parse(state.user)._id,
       }

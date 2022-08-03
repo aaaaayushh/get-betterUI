@@ -18,7 +18,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const fetchComments = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://${process.env.REACT_APP_SERVER}/post/${_id}/comments`
+        `https://${process.env.REACT_APP_SERVER}/post/${_id}/comments`
       );
       // console.log(res);
       setComments(res.data);
@@ -70,7 +70,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const likePost = async () => {
     try {
       await axios.post(
-        `http://${process.env.REACT_APP_SERVER}/post/${_id}/like`,
+        `https://${process.env.REACT_APP_SERVER}/post/${_id}/like`,
         {
           id: JSON.parse(state.user)._id,
         }
@@ -85,7 +85,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const unlikePost = async () => {
     try {
       await axios.post(
-        `http://${process.env.REACT_APP_SERVER}/post/${_id}/unlike`,
+        `https://${process.env.REACT_APP_SERVER}/post/${_id}/unlike`,
         {
           id: JSON.parse(state.user)._id,
         }
@@ -101,7 +101,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const addComment = async () => {
     try {
       const res = await axios.post(
-        `http://${process.env.REACT_APP_SERVER}/post/${_id}/comment`,
+        `https://${process.env.REACT_APP_SERVER}/post/${_id}/comment`,
         {
           user: JSON.parse(state.user)._id,
           comment,

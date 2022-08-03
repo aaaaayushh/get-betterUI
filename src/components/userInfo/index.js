@@ -71,7 +71,7 @@ export default function UserInfo({ user, posts }) {
     formData.append("file", profilePic);
     try {
       const res = await axios.post(
-        `http://${process.env.REACT_APP_SERVER}/post/uploadImage`,
+        `https://${process.env.REACT_APP_SERVER}/post/uploadImage`,
         formData,
         {
           headers: {
@@ -86,7 +86,7 @@ export default function UserInfo({ user, posts }) {
     }
     try {
       const res = await axios.post(
-        `http://${process.env.REACT_APP_SERVER}/user/updateDp`,
+        `https://${process.env.REACT_APP_SERVER}/user/updateDp`,
         {
           id: user._id,
           picUrl: picUrl,

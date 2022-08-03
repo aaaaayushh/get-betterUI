@@ -28,7 +28,7 @@ export const NavigationBar = () => {
   }
   const logout = () => {
     setLoading(true);
-    fetch(`http://${process.env.REACT_APP_SERVER}/auth/logout`, {
+    fetch(`https://${process.env.REACT_APP_SERVER}/auth/logout`, {
       method: "get",
     })
       .then((res) => {

@@ -13,7 +13,7 @@ const useChat = (chatId, userId, setLoading) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://${process.env.REACT_APP_SERVER}/message/getMessages/${userId}/${chatId}`
+          `https://${process.env.REACT_APP_SERVER}/message/getMessages/${userId}/${chatId}`
         );
         // console.log(res);
         //assign sender to each message
@@ -36,7 +36,7 @@ const useChat = (chatId, userId, setLoading) => {
     //create websocket connection
 
     socketRef.current = socketIOClient(
-      `http://${process.env.REACT_APP_SERVER}`,
+      `https://${process.env.REACT_APP_SERVER}`,
       {
         query: { chatId },
       }

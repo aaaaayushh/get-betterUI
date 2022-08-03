@@ -15,7 +15,7 @@ export default function FindFriends() {
     if (name !== "") {
       try {
         const res = await axios.get(
-          `http://${process.env.REACT_APP_SERVER}/user/search/${
+          `https://${process.env.REACT_APP_SERVER}/user/search/${
             JSON.parse(state.user)._id
           }/${name}`
         );
