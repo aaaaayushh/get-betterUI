@@ -100,9 +100,9 @@ export default function CreatePost() {
 
   const handleClick = () => {
     return;
-    if (hiddenFileInput.current) {
-      hiddenFileInput.current.click();
-    }
+    // if (hiddenFileInput.current) {
+    //   hiddenFileInput.current.click();
+    // }
   };
   return (
     <>
