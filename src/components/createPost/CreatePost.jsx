@@ -24,10 +24,6 @@ export default function CreatePost() {
   const hiddenFileInput = React.useRef(null);
   const { state } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   console.log(JSON.parse(state.user));
-  // }, [state.user]);
-
   useEffect(() => {
     if (!fileUpload) {
       setFilePreview(undefined);
@@ -103,7 +99,7 @@ export default function CreatePost() {
   };
 
   const handleClick = () => {
-    console.log(hiddenFileInput);
+    return;
     if (hiddenFileInput.current) {
       hiddenFileInput.current.click();
     }
@@ -189,7 +185,7 @@ export default function CreatePost() {
                   style={{
                     height: "50vh",
                     backgroundColor: "#565659",
-                    cursor: "pointer",
+                    cursor:'pointer'
                   }}
                   onClick={handleClick}
                   className="mt-3 card shadow shadow-lg border-0 text-light"
@@ -201,6 +197,7 @@ export default function CreatePost() {
                     />
                     <span className="fs-6 mt-3">Upload a photo!</span>
                   </div>
+                  <div className="bg-danger text-light p-2 mt-5">Image upload functionality disabled due to issues with Google Cloud payments please bear with this broke developer while he figures something out ;-;</div>
                 </div>
               )}
               <div className="col-12 d-flex justify-content-end">

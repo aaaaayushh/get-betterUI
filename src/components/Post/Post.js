@@ -195,8 +195,8 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
               {comments
                 .slice(0)
                 .reverse()
-                .map((comment) => (
-                  <div className="fs-6">
+                .map((comment,idx) => (
+                  <div className="fs-6" key={idx}>
                     <strong className="me-3">
                       {comment.user.firstname} {comment.user.lastname}
                     </strong>
@@ -216,9 +216,9 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
           <div className="me-3 ms-2">
             {comments
               .slice(comments.length - 3, comments.length)
-              .map((comment) => (
+              .map((comment,idx) => (
                 <>
-                  <div className="fs-6">
+                  <div className="fs-6" key={idx}>
                     <strong className="me-3">
                       {comment.user.firstname} {comment.user.lastname}
                     </strong>
