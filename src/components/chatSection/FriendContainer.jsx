@@ -12,7 +12,8 @@ export function ChatWindow({ friend, userId }) {
   const [loading, setLoading] = useState(false);
   const { messages, sendMessage } = useChat(friend._id, userId, setLoading);
   const [newMessage, setNewMessage] = useState("");
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
     sendMessage(newMessage);
     const message = {
       sender: userId,
@@ -20,7 +21,7 @@ export function ChatWindow({ friend, userId }) {
       message: newMessage,
     };
     const res = await axios.post(
-      `https://${process.env.REACT_APP_SERVER}/message/createMessage`,
+      `${process.env.REACT_APP_SERVER}/message/createMessage`,
       message
     );
     console.log(res);
@@ -55,7 +56,7 @@ export function ChatWindow({ friend, userId }) {
           ))}
         </ol>
       </div>
-      <Form className="mt-3 d-flex flex-row">
+      <Form className="mt-3 d-flex flex-row" onSubmit={(e)=>handleSendMessage(e)}>
         <Input
           type="text"
           value={newMessage}
@@ -63,7 +64,7 @@ export function ChatWindow({ friend, userId }) {
           required
           placeholder="Write message..."
         />
-        <Button onClick={handleSendMessage} color="primary">
+        <Button disabled={newMessage === ""} type="submit" color="primary">
           Send
         </Button>
       </Form>
