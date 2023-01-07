@@ -1,5 +1,9 @@
 # Get Better - A social media application that doesn't ruin your mental health(unheard of, I know)
 
+# UPDATE
+
+## The backend server for this application is currently offline, so none of the functionalities work. Please hang around while I try to figure out an alternative to heroku's free tier.
+
 Building a social media application from scratch is no easy task; designing everything from the frontend to the databases takes a lot of time.
 
 But, after a lot of hard work, I'm proud to present a working prototype of a social media application that I built entirely on my own! There is a lot of work left on this application and I'll try my best to keep updating it with time, hopefully one day making it feasible to be used in the real world.
