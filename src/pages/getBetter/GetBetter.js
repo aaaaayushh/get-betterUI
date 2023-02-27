@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-import axios from 'axios';
+import axios from "axios";
 import PageOne from "../../components/form/PageOne";
 import PageTwo from "../../components/form/PageTwo";
 import PageThree from "../../components/form/PageThree";
@@ -8,8 +8,8 @@ import PageFour from "../../components/form/PageFour";
 
 export const FormContext = React.createContext();
 const initState = {
-  age:21,
-  gender:0,
+  age: 21,
+  gender: 0,
   self_employed: 0,
   fam_history: 0,
   treatment: 0,
@@ -46,17 +46,21 @@ const reducer = (state, action) => {
       return state;
   }
 };
-async function submitData(state){
+async function submitData(state) {
   // const res = await axios.post(`http://${process.env.REACT_APP_SERVER}/user/mlData`,state);
-  const mlData = Object.keys(state).map((key,index)=>{
+  const mlData = Object.keys(state).map((key, index) => {
     return state[key];
   });
   console.log(mlData);
   const headers = {
-    'Content-Type':'application/x-www-form-urlencoded',
-    'Access-Control-Allow-Origin':'*'
-  }
-  const res = await axios.post("https://nkd3owrj4k.execute-api.ap-south-1.amazonaws.com/default/demoDocker",mlData,headers);
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Origin": "*",
+  };
+  const res = await axios.post(
+    "https://nkd3owrj4k.execute-api.ap-south-1.amazonaws.com/default/demoDocker",
+    mlData,
+    headers
+  );
   console.log(res);
   return res;
 }
@@ -87,12 +91,14 @@ export default function GetBetter() {
               </ModalHeader>
               <ModalBody>
                 <div className="col-10 mx-auto text-dark fs-5 p-4">
-                  This is a preliminary model whose primary aim is to evaluate
-                  whether it would be advisable for you to seek medical help for
-                  your mental health issues given your current employment status
-                  and health details. However, if the results of this model do
-                  not seem satisfactory to you please ignore it and seek
-                  whatever help is available to you.
+                  I AM REALLY SORRY BUT I RAN OUT OF AWS CREDITS AND NOW THIS
+                  MODEL DOESN'T WORK, PLEASE BEAR WITH ME WHILE I FIGURE
+                  SOMETHING OUT. This is a preliminary model whose primary aim
+                  is to evaluate whether it would be advisable for you to seek
+                  medical help for your mental health issues given your current
+                  employment status and health details. However, if the results
+                  of this model do not seem satisfactory to you please ignore it
+                  and seek whatever help is available to you.
                 </div>
               </ModalBody>
             </Modal>
