@@ -18,7 +18,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const fetchComments = useCallback(async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER}/post/${_id}/comments`
+        `web-production-31a2.up.railway.app/post/${_id}/comments`
       );
       // console.log(res);
       setComments(res.data);
@@ -69,12 +69,9 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   }, [likes, state.user]);
   const likePost = async () => {
     try {
-      await axios.post(
-        `${process.env.REACT_APP_SERVER}/post/${_id}/like`,
-        {
-          id: JSON.parse(state.user)._id,
-        }
-      );
+      await axios.post(`web-production-31a2.up.railway.app/post/${_id}/like`, {
+        id: JSON.parse(state.user)._id,
+      });
       // console.log(res);
       setLiked(true);
       setNumLikes(numLikes + 1);
@@ -85,7 +82,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const unlikePost = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_SERVER}/post/${_id}/unlike`,
+        `web-production-31a2.up.railway.app/post/${_id}/unlike`,
         {
           id: JSON.parse(state.user)._id,
         }
@@ -101,7 +98,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const addComment = async () => {
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER}/post/${_id}/comment`,
+        `web-production-31a2.up.railway.app/post/${_id}/comment`,
         {
           user: JSON.parse(state.user)._id,
           comment,
@@ -195,7 +192,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
               {comments
                 .slice(0)
                 .reverse()
-                .map((comment,idx) => (
+                .map((comment, idx) => (
                   <div className="fs-6" key={idx}>
                     <strong className="me-3">
                       {comment.user.firstname} {comment.user.lastname}
@@ -216,7 +213,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
           <div className="me-3 ms-2">
             {comments
               .slice(comments.length - 3, comments.length)
-              .map((comment,idx) => (
+              .map((comment, idx) => (
                 <>
                   <div className="fs-6" key={idx}>
                     <strong className="me-3">

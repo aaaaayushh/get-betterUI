@@ -69,7 +69,7 @@ export default function CreatePost() {
       formData.append("file", fileUpload);
       try {
         const res = await axios.post(
-          `${process.env.REACT_APP_SERVER}/post/uploadImage`,
+          `web-production-31a2.up.railway.app/post/uploadImage`,
           formData,
           {
             headers: {
@@ -87,7 +87,7 @@ export default function CreatePost() {
       const post = { caption, image: picUrl, user: JSON.parse(state.user) };
       console.log(post);
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER}/post`,
+        `web-production-31a2.up.railway.app/post`,
         post
       );
       console.log(res);

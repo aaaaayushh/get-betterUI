@@ -7,7 +7,7 @@ export default function ChatSection({ user }) {
   const [friends, setFriends] = useState([]);
   async function getFriends(id) {
     const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/user/getFriends/${id}`
+      `web-production-31a2.up.railway.app/user/getFriends/${id}`
     );
     console.log(res);
     setFriends(res.data);

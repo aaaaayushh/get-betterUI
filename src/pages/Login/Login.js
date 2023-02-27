@@ -29,7 +29,7 @@ export const Login = () => {
   };
   const onSuccess = async (res) => {
     console.log(res);
-    fetch(`${process.env.REACT_APP_SERVER}/auth/googlelogin`, {
+    fetch(`web-production-31a2.up.railway.app/auth/googlelogin`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export const Login = () => {
     setLoading(true);
     setData({ ...data, error: null });
 
-    fetch(`${process.env.REACT_APP_SERVER}/auth/login`, {
+    fetch(`web-production-31a2.up.railway.app/auth/login`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

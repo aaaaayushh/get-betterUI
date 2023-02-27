@@ -18,7 +18,7 @@ export default function Home() {
     const fetchPosts = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_SERVER}/post/${
+          `web-production-31a2.up.railway.app/post/${
             JSON.parse(state.user)._id
           }`
         );

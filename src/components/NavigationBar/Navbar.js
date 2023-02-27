@@ -28,7 +28,7 @@ export const NavigationBar = () => {
   }
   const logout = () => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_SERVER}/auth/logout`, {
+    fetch(`web-production-31a2.up.railway.app/auth/logout`, {
       method: "get",
     })
       .then((res) => {
