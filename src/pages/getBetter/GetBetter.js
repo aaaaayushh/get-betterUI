@@ -47,7 +47,7 @@ const reducer = (state, action) => {
   }
 };
 async function submitData(state) {
-  // const res = await axios.post(`http://web-production-31a2.up.railway.app/user/mlData`,state);
+  // const res = await axios.post(`http://${process.env.REACT_APP_SERVER}/user/mlData`,state);
   const mlData = Object.keys(state).map((key, index) => {
     return state[key];
   });

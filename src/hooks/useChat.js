@@ -13,7 +13,7 @@ const useChat = (chatId, userId, setLoading) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `web-production-31a2.up.railway.app/message/getMessages/${userId}/${chatId}`
+          `${process.env.REACT_APP_SERVER}/message/getMessages/${userId}/${chatId}`
         );
         // console.log(res);
         //assign sender to each message
@@ -35,7 +35,7 @@ const useChat = (chatId, userId, setLoading) => {
   useEffect(() => {
     //create websocket connection
 
-    socketRef.current = socketIOClient(`web-production-31a2.up.railway.app`, {
+    socketRef.current = socketIOClient(`${process.env.REACT_APP_SERVER}`, {
       query: { chatId },
     });
     console.log("connection created");

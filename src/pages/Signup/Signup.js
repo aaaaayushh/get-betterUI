@@ -24,7 +24,7 @@ export const Signup = () => {
     setconfirmPass(e.target.value);
   };
   const onSuccess = async (res) => {
-    fetch(`web-production-31a2.up.railway.app/auth/googleSignup`, {
+    fetch(`${process.env.REACT_APP_SERVER}/auth/googleSignup`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const Signup = () => {
     e.preventDefault();
     setLoading(true);
     setData({ ...data, error: null });
-    fetch(`web-production-31a2.up.railway.app/auth/signup`, {
+    fetch(`${process.env.REACT_APP_SERVER}/auth/signup`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const Signup = () => {
           setAuthError(true);
           setLoading(false);
         } else {
-          fetch(`web-production-31a2.up.railway.app/auth/signupInfo`, {
+          fetch(`${process.env.REACT_APP_SERVER}/auth/signupInfo`, {
             method: "post",
             headers: {
               "Content-Type": "application/json",

@@ -14,14 +14,14 @@ export default function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `web-production-31a2.up.railway.app/user/getUser/${id.userId}`
+        `${process.env.REACT_APP_SERVER}/user/getUser/${id.userId}`
       );
       console.log(res);
       setUser(res.data.user);
     };
     const fetchUserPosts = async () => {
       const res = await axios.get(
-        `web-production-31a2.up.railway.app/post/user/${id.userId}`
+        `${process.env.REACT_APP_SERVER}/post/user/${id.userId}`
       );
       console.log(res);
       res.data.sort((a, b) => {

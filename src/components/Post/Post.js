@@ -18,7 +18,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const fetchComments = useCallback(async () => {
     try {
       const res = await axios.get(
-        `web-production-31a2.up.railway.app/post/${_id}/comments`
+        `${process.env.REACT_APP_SERVER}/post/${_id}/comments`
       );
       // console.log(res);
       setComments(res.data);
@@ -69,7 +69,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   }, [likes, state.user]);
   const likePost = async () => {
     try {
-      await axios.post(`web-production-31a2.up.railway.app/post/${_id}/like`, {
+      await axios.post(`${process.env.REACT_APP_SERVER}/post/${_id}/like`, {
         id: JSON.parse(state.user)._id,
       });
       // console.log(res);
@@ -82,7 +82,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const unlikePost = async () => {
     try {
       await axios.post(
-        `web-production-31a2.up.railway.app/post/${_id}/unlike`,
+        `${process.env.REACT_APP_SERVER}/post/${_id}/unlike`,
         {
           id: JSON.parse(state.user)._id,
         }
@@ -98,7 +98,7 @@ export default function Post({ user, likes, caption, image, _id, timestamp }) {
   const addComment = async () => {
     try {
       const res = await axios.post(
-        `web-production-31a2.up.railway.app/post/${_id}/comment`,
+        `${process.env.REACT_APP_SERVER}/post/${_id}/comment`,
         {
           user: JSON.parse(state.user)._id,
           comment,

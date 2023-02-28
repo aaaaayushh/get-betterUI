@@ -21,7 +21,7 @@ export function ChatWindow({ friend, userId }) {
       message: newMessage,
     };
     const res = await axios.post(
-      `web-production-31a2.up.railway.app/message/createMessage`,
+      `${process.env.REACT_APP_SERVER}/message/createMessage`,
       message
     );
     console.log(res);
